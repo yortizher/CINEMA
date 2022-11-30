@@ -1,0 +1,36 @@
+:root {
+  --dark-blue: #001427;
+  --blue: #03071E;
+  --white: #ffffff;
+  --gray: #708D81;
+  --dark-gray: #333533;
+  --light-black:#202020;
+  --corn-silk:#F4D58D;
+  --red: #BF0603;
+  --dark-red: #8D0801;
+  --red-wine:#6A040F;
+
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--white);
+  background: var(--light-black);
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
