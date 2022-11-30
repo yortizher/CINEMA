@@ -10,12 +10,12 @@
         <h3>Administración</h3>
     </div>
     <ul class="sidebarMenuInner components">
-        <li class="active"><a href="#">Clientes</a></li>
-        <li><a href="#">Horarios</a></li>
-        <li><a href="#">Categorias</a></li>
-        <li><a href="#">Peliculas</a></li>
-        <li><a href="#">Cartelera</a></li>
-        <li><a href="#">Sala</a></li>
+        <li class="active"><RouterLink to="/user" href="#">Clientes</RouterLink></li>
+        <li><RouterLink to="/schedule" href="#">Horarios</RouterLink></li>
+        <li><RouterLink to="/category" href="#">Categorias</RouterLink></li>
+        <li><RouterLink to="/movie" href="#">Peliculas</RouterLink></li>
+        <li><RouterLink to="/billboard" href="#">Cartelera</RouterLink></li>
+        <li><RouterLink to="/room" href="#">Sala</RouterLink></li>
     </ul>
   </div>
 </template>

@@ -8,10 +8,10 @@
             <span class="navbar-text logo">CINEMA</span>
         </div>
         <ul>
-            <li><a class="tab" href="#">Peliculas</a></li>
-            <li><a class="tab" href="#">Salas</a></li>
-            <li><a class="tab" href="#">Cartelera</a></li>
-            <li><a class="tab" href="#">Ventas de Entradas</a></li>
+            <li><RouterLink to="/movie" class="tab" href="#">Peliculas</RouterLink></li>
+            <li><RouterLink to="/room" class="tab" href="#">Salas</RouterLink></li>
+            <li><RouterLink to="/billboard" class="tab" href="#">Cartelera</RouterLink></li>
+            <li><RouterLink to="/ticketing" class="tab" href="#">Ventas de Entradas</RouterLink></li>
         </ul>
    </nav>
  </div>
@@ -78,33 +78,6 @@ ul {
 	 background-color: #0062b3;
 	 cursor: pointer;
 }
-/* .spinner {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background-color: #fff;
-}
-.horizontal {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 3px;
-}
-.diagonal.part-1 {
-    position: relative;
-    transition: all 0.3s;
-    box-sizing: border-box;
-    float: left;
-}
-.diagonal.part-2 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 3px;
-} */
+
 
 </style>
