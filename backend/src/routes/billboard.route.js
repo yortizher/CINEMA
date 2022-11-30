@@ -13,6 +13,6 @@ export const billboardRouter = Router()
 
 billboardRouter.get('/', getResponses)
 billboardRouter.get('/:id', responseById)
-billboardRouter.post('/', createResponse)
+billboardRouter.post('/', upload.none(),  createResponse)
 billboardRouter.delete('/:id', deleteResponse)
-billboardRouter.put('/:id', editResponse)
+billboardRouter.put('/:id', upload.none(), editResponse)

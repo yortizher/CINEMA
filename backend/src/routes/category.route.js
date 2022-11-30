@@ -1,4 +1,6 @@
 import { Router } from 'express'
+import multer  from 'multer'
+const upload = multer()
 import { 
     getResponses,
     responseById,
@@ -11,6 +13,6 @@ export const categoryRouter = Router()
 
 categoryRouter.get('/', getResponses)
 categoryRouter.get('/:id', responseById)
-categoryRouter.post('/', createResponse)
+categoryRouter.post('/', upload.none(), createResponse)
 categoryRouter.delete('/:id', deleteResponse)
-categoryRouter.put('/:id', editResponse)
+categoryRouter.put('/:id',upload.none(), editResponse)

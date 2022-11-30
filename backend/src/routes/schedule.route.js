@@ -13,6 +13,6 @@ export const scheduleRouter = Router()
 
 scheduleRouter.get('/', getResponses)
 scheduleRouter.get('/:id', scheduleById)
-scheduleRouter.post('/',upload.none(), createSchedule)
+scheduleRouter.post('/', upload.none(), createSchedule)
 scheduleRouter.delete('/:id', deleteSchedule)
-scheduleRouter.put('/:id', editSchedule)
+scheduleRouter.put('/:id', upload.none(), editSchedule)

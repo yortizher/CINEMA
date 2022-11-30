@@ -13,6 +13,6 @@ export const sellRouter = Router()
 
 sellRouter.get('/', getResponses)
 sellRouter.get('/:id', responseById)
-sellRouter.post('/', createResponse)
+sellRouter.post('/', upload.none(),  createResponse)
 sellRouter.delete('/:id', deleteResponse)
-sellRouter.put('/:id', editResponse)
+sellRouter.put('/:id', upload.none(),  editResponse)

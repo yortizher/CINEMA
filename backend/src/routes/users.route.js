@@ -1,4 +1,6 @@
 import { Router } from 'express'
+import multer  from 'multer'
+const upload = multer()
 import { 
     user,
     userById,
@@ -11,6 +13,6 @@ export const userRouter = Router()
 
 userRouter.get('/', user)
 userRouter.get('/:id', userById)
-userRouter.post('/', createUser)
+userRouter.post('/', upload.none(),  createUser)
 userRouter.delete('/:id', deleteUSer)
-userRouter.put('/:id', editUser)
+userRouter.put('/:id', upload.none(),  editUser)

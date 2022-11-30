@@ -101,7 +101,7 @@ export const editResponse = async (req,res) => {
     const { id } = req.params
     try {
 
-        const { name, capacity,  desc_location } = req.body
+        const { name, capacity,  desc_location, seats_distribution } = req.body
 
         const convertValue = val => {
             let capacidad = val
@@ -151,11 +151,13 @@ export const editResponse = async (req,res) => {
             editRegister.desc_location = desc_location
             await editRegister.save()
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
-        } else {
+        } else if(name) {
             editRegister.name = name
             editRegister.desc_location = desc_location
 
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
+        }else {
+            editRegister.seats_distribution = seats_distribution
         }
        
       } catch (err) {
