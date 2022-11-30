@@ -1,17 +1,15 @@
-
-/* semantic color variables for this project */
 :root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
+  --dark-blue: #001427;
+  --blue: #03071E;
+  --white: #ffffff;
+  --gray: #708D81;
+  --dark-gray: #333533;
+  --light-black:#202020;
+  --corn-silk:#F4D58D;
+  --red: #BF0603;
+  --dark-red: #8D0801;
+  --red-wine:#6A040F;
 
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
-
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
 }
 
 *,
@@ -25,8 +23,8 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
+  color: var(--white);
+  background: var(--light-black);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
