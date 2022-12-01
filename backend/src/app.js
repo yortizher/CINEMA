@@ -2,6 +2,7 @@ import express from "express"
 import morgan from "morgan"
 import cors from 'cors'
 import bodyParser  from 'body-parser';
+import fileupload from 'express-fileupload'
 import { errorRouter } from "./routes/error404.route.js"
 import { scheduleRouter } from './routes/schedule.route.js'
 import { billboardRouter } from './routes/billboard.route.js'
@@ -14,9 +15,9 @@ const app = express()
 
 app.use(cors())
 app.use(morgan('tiny'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({  extended: true }))
-
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+app.use(fileupload({useTempFiles: true}))
 
 app.use('/api/v1/schedule', scheduleRouter)
 app.use('/api/v1/billboard', billboardRouter)

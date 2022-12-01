@@ -18,6 +18,10 @@ export const Movie = db.define('movie',{
             type: INTEGER,
             allowNull: true
         },
+        image:{
+            type: STRING(100),
+            allowNull: true
+        },
         duration:{
             type: DOUBLE,
             allowNull: true

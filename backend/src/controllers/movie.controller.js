@@ -1,6 +1,6 @@
 import { Category } from '../models/category.model.js';
 import  { Movie } from '../models/movie.model.js'
-
+import { cloudinary } from "../helpers/helper.js"
 
 export const getResponses = async (req,res) => {
     try{
@@ -38,10 +38,15 @@ export const createResponse = async  (req,res) => {
 
     try {
     
-    const { name, category_id, duration, synopsis, age_range } = req.body
+        const  {tempFilePath:fileStr}  = req.files.image_url
+
+        const { name, category_id, duration, synopsis, age_range } = req.body
+        
+        const uploadResponse = await cloudinary.uploader.upload( fileStr, { upload_preset: "pets_folder" })
+    
 
     const createRegister = await Movie.create({
-        name, category_id, duration, synopsis, age_range
+        name, category_id,image: uploadResponse.secure_url, duration, synopsis, age_range
     })
 
     res.status(200).json({message: "Register was created succesfully", createRegister})
@@ -76,14 +81,15 @@ export const editResponse = async (req,res) => {
     const { id } = req.params
     try {
 
-        const { name, category_id, duration, synopsis, age_range } = req.body
+        const { name, category_id, image, duration, synopsis, age_range } = req.body
     
         const editRegister = await Movie.findByPk(id)
 
         if (editRegister) {
 
             editRegister.name = name
-            editRegister.category_id = category_id
+            editRegister.category_id = category_id 
+            editRegister.image = image 
             editRegister.duration = duration
             editRegister.synopsis = synopsis
             editRegister.age_range = age_range
