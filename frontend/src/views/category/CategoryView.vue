@@ -1,3 +1,8 @@
+<script setup>
+import Category from '../../components/category/Category.vue'
+</script>
 <template>
-    <h2>category View</h2>
+    <div class="container-main">
+      <Category/>
+    </div>
 </template>

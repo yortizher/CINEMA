@@ -1,3 +1,8 @@
+<script setup>
+import Movie from '../../components/movie/Movie.vue'
+</script>
 <template>
-    <h2>Movie View</h2>
+    <div class="container-main">
+      <Movie/>
+    </div>
 </template>

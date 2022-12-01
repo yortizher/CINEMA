@@ -9,11 +9,46 @@ const router = createRouter({
     //   name: 'home',
     //   component: HomeView
     // },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   component: () => import('../views/AboutView.vue')
-    // }
+    {
+      path: '/billboard',
+      name: 'billboard',
+      component: () => import('../views/billboard/BillboardView.vue')
+    },
+    {
+      path: '/category',
+      name: 'category',
+      component: () => import('../views/category/CategoryView.vue')
+    },
+    {
+      path: '/movie',
+      name: 'movie',
+      component: () => import('../views/movie/MovieView.vue')
+    },
+    {
+      path: '/room',
+      name: 'room',
+      component: () => import('../views/room/RoomView.vue')
+    },
+    {
+      path: '/schedule',
+      name: 'schedule',
+      component: () => import('../views/schedule/ScheduleView.vue')
+    },
+    {
+      path: '/sell',
+      name: 'sell',
+      component: () => import('../views/sell/SellView.vue')
+    },
+    {
+      path: '/ticketing',
+      name: 'ticketing',
+      component: () => import('../views/ticketing/TicketingView.vue')
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: () => import('../views/user/UserView.vue')
+    }
   ]
 })
 
