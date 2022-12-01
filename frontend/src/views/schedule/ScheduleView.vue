@@ -1,5 +1,9 @@
+<script setup>
+import Schedule from '../../components/schedule/Schedule.vue'
+
+</script>
 <template>
    <div class="container-main">
-        <h2>Schedule View</h2>
+        <Schedule/>
    </div>
 </template>
