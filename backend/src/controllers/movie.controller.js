@@ -1,9 +1,10 @@
+import { Category } from '../models/category.model.js';
 import  { Movie } from '../models/movie.model.js'
 
 
 export const getResponses = async (req,res) => {
     try{
-        const list = await Movie.findAll({ include: { all: true }})
+        const list = await Movie.findAll({ include: [{ model: Category }] })
         res.status(200).json(list)
     }catch(err){
         console.log(err);
@@ -14,6 +15,7 @@ export const responseById = async (req,res) => {
     const { id } = req.params
     try{
         const itemId = await Movie.findOne({
+            include: [{ model: Category }], 
             where: {
               id,
             },
