@@ -38,7 +38,7 @@ export const createResponse = async  (req,res) => {
 
     try {
     
-        const  {tempFilePath:fileStr}  = req.files.image_url
+        const  {tempFilePath:fileStr}  = req.files.img_url
 
         const { name, category_id, duration, synopsis, age_range } = req.body
         
@@ -46,7 +46,7 @@ export const createResponse = async  (req,res) => {
     
 
     const createRegister = await Movie.create({
-        name, category_id,image: uploadResponse.secure_url, duration, synopsis, age_range
+        name, category_id, img_url: uploadResponse.secure_url, duration, synopsis, age_range
     })
 
     res.status(200).json({message: "Register was created succesfully", createRegister})
@@ -81,7 +81,7 @@ export const editResponse = async (req,res) => {
     const { id } = req.params
     try {
 
-        const { name, category_id, image, duration, synopsis, age_range } = req.body
+        const { name, category_id,  duration, synopsis, age_range } = req.body
     
         const editRegister = await Movie.findByPk(id)
 
@@ -89,7 +89,6 @@ export const editResponse = async (req,res) => {
 
             editRegister.name = name
             editRegister.category_id = category_id 
-            editRegister.image = image 
             editRegister.duration = duration
             editRegister.synopsis = synopsis
             editRegister.age_range = age_range

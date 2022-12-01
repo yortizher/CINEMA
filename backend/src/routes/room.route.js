@@ -1,6 +1,5 @@
 import { Router } from 'express'
-import multer  from 'multer'
-const upload = multer()
+
 import { 
     getResponses,
     responseById,
@@ -13,6 +12,6 @@ export const roomRouter = Router()
 
 roomRouter.get('/', getResponses)
 roomRouter.get('/:id', responseById)
-roomRouter.post('/', upload.none(),  createResponse)
+roomRouter.post('/',   createResponse)
 roomRouter.delete('/:id', deleteResponse)
-roomRouter.put('/:id', upload.none(),  editResponse)
+roomRouter.put('/:id',   editResponse)

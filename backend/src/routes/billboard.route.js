@@ -1,6 +1,4 @@
 import { Router } from 'express'
-import multer  from 'multer'
-const upload = multer()
 import { 
     getResponses,
     responseById,
@@ -13,6 +11,6 @@ export const billboardRouter = Router()
 
 billboardRouter.get('/', getResponses)
 billboardRouter.get('/:id', responseById)
-billboardRouter.post('/', upload.none(),  createResponse)
+billboardRouter.post('/',   createResponse)
 billboardRouter.delete('/:id', deleteResponse)
-billboardRouter.put('/:id', upload.none(), editResponse)
+billboardRouter.put('/:id',  editResponse)

@@ -1,6 +1,5 @@
 import { Router } from 'express'
-import multer  from 'multer'
-const upload = multer()
+
 import { 
     getResponses,
     responseById,
@@ -13,6 +12,6 @@ export const sellRouter = Router()
 
 sellRouter.get('/', getResponses)
 sellRouter.get('/:id', responseById)
-sellRouter.post('/', upload.none(),  createResponse)
+sellRouter.post('/',   createResponse)
 sellRouter.delete('/:id', deleteResponse)
-sellRouter.put('/:id', upload.none(),  editResponse)
+sellRouter.put('/:id',   editResponse)

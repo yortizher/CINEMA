@@ -1,6 +1,5 @@
 import { Router } from 'express'
-import multer  from 'multer'
-const upload = multer()
+
 import { 
     getResponses,
     responseById,
@@ -13,6 +12,6 @@ export const movieRouter = Router()
 
 movieRouter.get('/', getResponses)
 movieRouter.get('/:id', responseById)
-movieRouter.post('/', upload.none(),  createResponse)
+movieRouter.post('/',   createResponse)
 movieRouter.delete('/:id', deleteResponse)
-movieRouter.put('/:id', upload.none(),  editResponse)
+movieRouter.put('/:id',   editResponse)

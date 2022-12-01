@@ -15,8 +15,8 @@ const app = express()
 
 app.use(cors())
 app.use(morgan('tiny'))
-app.use(bodyParser.json({ limit: '50mb' }))
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({  extended: false }))
 app.use(fileupload({useTempFiles: true}))
 
 app.use('/api/v1/schedule', scheduleRouter)
