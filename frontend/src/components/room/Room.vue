@@ -1,32 +1,98 @@
 <script setup>
+import ChairViewVue from "./ChairView.vue";
 import { storeToRefs } from "pinia"; //para desestructurar las variables reactivas
 import { useRoomStore } from "@/stores/room.js";
+import { reactive, ref, onMounted, computed, watch } from "vue";
+import { RouterLink, RouterView } from "vue-router";
+
+const id = ref(0);
+const dataRoomS = ref([]);
+const dataRoomE = ref([]);
+const bandera = ref(true);
+const arrayIds = ref([]);
+// const arrayIds2 = ref([])
 
 const dataPinea = useRoomStore(); //no olvidar los parentisis
+const { dataPineaChair } = storeToRefs(dataPinea);
+const { band } = storeToRefs(dataPinea);
 
-const { dataPineaRoom } = storeToRefs(dataPinea);
+const dataRoom = async () => {
+  const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/room";
+  await fetch(urlData)
+    .then((resp) => resp.json())
+    .then((data) => (dataRoomS.value = data));
+};
+
+const dataRoomId = async () => {
+  const urlData = `https://cinema-production-cb13.up.railway.app/api/v1/room/${id.value}`;
+  await fetch(urlData)
+    .then((resp) => resp.json())
+    .then((data) => (dataRoomE.value = data));
+};
+
+const sendItem = (data) => {
+  id.value = data;
+  bandera.value = false;
+};
+
+const sendItem2 = (data2) => {
+  arrayIds.value.push(data2)
+  console.log( arrayIds.value)
+  
+
+    
+
+    const arrayIds2 = new Set(arrayIds.value);
+
+    let result = [...arrayIds2];
+
+    console.log(result); 
+
+    // const result2 = words.filter(word => word.length > 6);
+
+ 
+};
+
+onMounted(() => {
+  dataRoom();
+});
 </script>
 
 
 <template>
-    <h1 class="text-center title">Salas</h1>
-  <div class="container">
-    <div v-for="item in dataPineaRoom" :key="item.id" class="card">
-      <h5 class="card-title" v-text="item.name"></h5>
-      <h6 class="card-subtitle mb-2">Capacidad 
-        <br>{{item.capacity}}</h6>
-      <p class="card-text" v-text="item.desc_location"></p>
+  <div v-if="bandera">
+    <h1 class="text-center title1">Salas</h1>
+    <div class="container">
+      <div v-for="item in dataRoomS" :key="item.id" class="card">
+        <h5 class="card-title" v-text="item.name"></h5>
+        <h6 class="card-subtitle mb-2">Capacidad <br />{{ item.capacity }}</h6>
+        <p class="card-text" v-text="item.desc_location"></p>
+        <button
+            @click="sendItem(item.id), dataRoomId()"
+            class="btn border border-light"
+          >
+            ir
+          </button>
+      </div>
     </div>
   </div>
-
-
- 
+  <div class="container1" v-else>
+    <div class="title">
+      <h1>{{ dataRoomE.name }}</h1>
+    </div>
+    <div class="flex-container">
+        <div v-for="item in dataRoomE.seats_distribution" :key="item.ID" class="card1 border border-light">
+          <button @click="sendItem2(item.ID)" class="text-light" >{{ item.ID }}</button>
+        </div>
+    </div>
+    <div><button class="btn" type="button">Guardar</button></div>
+  </div>
 </template>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
 * {
-  color:white;
+  color: white;
   width: 100%;
   height: 100%;
   font-family: "Open Sans", sans-serif;
@@ -59,7 +125,6 @@ const { dataPineaRoom } = storeToRefs(dataPinea);
   margin: 20px;
   text-align: center;
   transition: all 0.25s;
-  
 
   background: rgba(106, 4, 15, 0.5);
   -webkit-backdrop-filter: blur(10px);
@@ -67,24 +132,54 @@ const { dataPineaRoom } = storeToRefs(dataPinea);
   border: 1px solid rgba(106, 4, 15, 0.25);
 }
 .container .card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 12px 16px rgba(255, 255, 255, 0.2);
+  transform: translateY(-15px);
+  box-shadow: 0 12px 16px rgba(255, 255, 255, 0.2);
 }
-.container .card h6{
-    font-weight: 600;
+.container .card h6 {
+  font-weight: 600;
 }
-.container .card p{
-    padding: 0 1rem;
-    font-size: 16px;
-    font-weight: 300;
+.container .card p {
+  padding: 0 1rem;
+  font-size: 16px;
+  font-weight: 300;
 }
 
+.title1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  margin-top: 3%;
+  margin-bottom: 1%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.card1 {
+  width: 3rem;
+  height: 4rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 1.3%;
+}
+.flex-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2% 10% 0% 10%;
+}
 .title{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 3rem;
-    font-weight: 900;
-    margin-top: 3%;
-    margin-bottom: 1%;
-    color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 10%;
+}
+.card1 button{
+  border-style: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: black;
 }
 </style>
