@@ -1,5 +1,8 @@
+<script setup>
+import User from '../../components/user/User.vue'
+</script>
 <template>
    <div class="container-main">
-        <h2>user View</h2>
+       <User/>
    </div>
 </template>
