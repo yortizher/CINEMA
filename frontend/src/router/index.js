@@ -48,7 +48,48 @@ const router = createRouter({
       path: '/user',
       name: 'user',
       component: () => import('../views/user/UserView.vue')
-    }
+    },
+    {
+      path: '/consultCategories',
+      name: 'consultCategories',
+      component: () => import('../components/category/ConsultCategories.vue')
+    },
+    {
+      path: '/consultSchedule',
+      name: 'consultSchedule',
+      component: () => import('../components/schedule/ConsultSchedule.vue')
+    },
+    {
+      path: '/consultMovie',
+      name: 'consultMovie',
+      component: () => import('../components/movie/ConsultMovie.vue')
+    },
+    {
+      path: '/consultUser',
+      name: 'consultUser',
+      component: () => import('../components/user/ConsultUser.vue')
+    },
+    {
+      path: '/consultBillboard',
+      name: 'consultBillboard',
+      component: () => import('../components/billboard/ConsultBillboard.vue')
+    },
+    {
+      path: '/consultSell', 
+      name: 'consultSell',
+      component: () => import('../components/sell/ConsultSell.vue')
+    },
+    {
+      path: '/consultRoom', 
+      name: 'consultRoom',
+      component: () => import('../components/room/ConsultRoom.vue')
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: () => import("../NotFoundView.vue"),
+  }
+
   ]
 })
 
