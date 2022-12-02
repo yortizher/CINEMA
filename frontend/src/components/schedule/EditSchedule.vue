@@ -3,7 +3,7 @@ import {  ref, onMounted, computed, watch } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, maxLength, minValue, numeric,alpha, helpers } from '@vuelidate/validators'
 import { useRouter, useRoute } from 'vue-router'
-import { RouterLink, RouterView } from 'vue-router'
+
 
 
 const {params } = useRoute();
@@ -77,7 +77,7 @@ onMounted(()=> {
 // console.log(filterSche)
 // console.log(start_time)
 // });
-const filter = computed(() => {
+const filterSche = computed(() => {
 	for (let x in filterSchedules.value) {
 		if(filterSchedules.value[x].id == schedules_id.value) {
 			formTime.value.id = filterSchedules.value[x].id,
@@ -93,7 +93,7 @@ const editSchedule = async () => {
     formData.append("start_time", formTime.value.up_time);
 
     const urlData = `https://cinema-production-cb13.up.railway.app/api/v1/schedule/${schedules_id.value}`;
-    fetch(urlData, {
+    await fetch(urlData, {
       method: "PUT",
       body: formData,
     })
@@ -154,19 +154,20 @@ const clear = () => {
 				<h2 class="text-center mb-3 mt-2 h2 text-white">Editar Horario</h2>
 				<div class="division">
 					<hr class="line">
-					{{filter}}
+					{{filterSche}}
 				</div>
 				<form class="form" @submit.prevent="submitForm()">
 					<div class="form-group">
 						<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" @input="getStart_time($event)" v-model="formTime.start_time"> -->
     					<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" :value="formTime.start_time"> -->
-						<input type="text" class="form-control" :placeholder="formTime.start_time" v-model="formTime.up_time"/>
+						<!-- <input type="text" class="form-control" :placeholder="formTime.start_time" v-model="formTime.up_time"/> -->
+					     <input type="text" class="form-control"  v-model="formTime.start_time"/> 
 						<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" @input="filter($event)" v-model="formTime.start_time">  -->
 						<!-- v-if="item.id === schedules_id" v-model="item.start_time" -->
                         <!-- <span v-for="error in v$.start_time.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
   					<div class="form-group buttons mt-3">
-  						<button type="button" class="btn btn-block btn-success btn-lg">
+  						<button type="button" class="btn btn-block btn-success btn-lg mx-auto">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
 								<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
 								<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>

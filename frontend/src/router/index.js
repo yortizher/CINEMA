@@ -55,9 +55,24 @@ const router = createRouter({
       component: () => import('../components/category/ConsultCategories.vue')
     },
     {
+      path: '/editCategory/:id',
+      name: 'editCategory',
+      component: () => import('../components/category/EditCategory.vue')
+    },
+    {
       path: '/consultSchedule',
       name: 'consultSchedule',
       component: () => import('../components/schedule/ConsultSchedule.vue')
+    },
+    {
+      path: '/editSchedule/:id',
+      name: 'editSchedule',
+      component: () => import('../components/schedule/EditSchedule.vue')
+    },
+    {
+      path: '/editMovie/:id',
+      name: 'editMovie',
+      component: () => import('../components/movie/EditMovie.vue')
     },
     {
       path: '/consultMovie',
@@ -68,6 +83,11 @@ const router = createRouter({
       path: '/consultUser',
       name: 'consultUser',
       component: () => import('../components/user/ConsultUser.vue')
+    },
+    {
+      path: '/editUser/:id',
+      name: 'editUser',
+      component: () => import('../components/user/EditUser.vue')
     },
     {
       path: '/consultBillboard',

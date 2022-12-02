@@ -2,7 +2,129 @@
 import {  ref, onMounted, computed } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, maxLength, minValue, numeric,alpha, helpers } from '@vuelidate/validators'
+import { useRouter, useRoute } from 'vue-router'
+  
 
+const router = useRouter();
+const {params } = useRoute();
+console.log(params)
+const movie_id = ref(params.id)
+console.log("movie_id",movie_id.value)
+
+const movies = ref([]);
+
+const filterMovies = ref([]);
+
+const formMovie = ref({
+  name: "",
+  category: "",
+  duration: 0,
+  synopsis:"",
+  age_range: "",
+});
+
+const getMovies = () => {
+   const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/movie"
+   fetch(urlData)
+   .then(resp => resp.json())
+   .then(data => filterMovies.value = data )
+   console.log(filterMovies)
+}
+
+onMounted(()=> {
+	getMovies();
+});
+
+const rules = computed (() =>{
+  return {  
+    name: { 
+      required:helpers.withMessage("El campo nombre es obligatorio", required )
+    },
+    category: {
+       required:helpers.withMessage("El campo Cateroria es obligatorio", required ) 
+    },
+    duration: { 
+      required:helpers.withMessage("El campo duración es obligatorio", required )
+    },
+    synopsis: {
+       required:helpers.withMessage("El campo sinopsis es obligatorio", required ) 
+    },
+    age_range: {
+       required:helpers.withMessage("El campo rango de edad es obligatorio", required ) 
+    }
+  }
+});
+
+// inicializar para ver el la data dentro del componente
+const v$ = useVuelidate(rules, formMovie)
+
+const submitForm = async () => {
+  const result = await v$.value.$validate();
+  if(result) {
+    // editMovie();
+    clear();
+  } else {
+    messageError("Verifique que todos los campos este llenos");
+  }
+};
+
+const message = (position, title, text, time) => {
+  Swal.fire({
+    position: position,
+    icon: "success",
+    title: title,
+    text: text,
+    showConfirmButton: false,
+    timer: time,
+  });
+};
+
+const messageError = ( text) => {
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: text,
+  });
+};
+
+const editMovie = async () => {
+	const formData = new FormData();
+	formData.append("name", formMovie.value.name);
+	formData.append("category_id",formMovie.value.category);
+	formData.append("duration", formMovie.value.duration);
+	formData.append("synopsis", formMovie.value.synopsis);
+	formData.append("age_range", formMovie.value.age_range);
+
+	console.log(formData)
+    const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/movie/${movie_id}`;
+	await fetch(urlDB, {
+		method: "PUT",
+		body: formData,
+		})
+		.then((response) => response)
+		.then((response) => {
+			message(
+			"center",
+			"Actualización completada",
+			"Se ha actualizado correctamente la categoria",
+			1500
+			);
+		})
+		.then((data) => {
+			console.log(data)
+		})
+		.catch((error) => {
+			console.error("Error:", error);
+		});
+};
+const clear = () => {
+  v$.value.$reset()
+  formMovie.value.name = "";
+  formMovie.value.category = "";
+  formMovie.value.duration = "";
+  formMovie.value.synopsis ="";
+  formMovie.value.age_range = "";
+}
 
 
 </script>
@@ -61,7 +183,7 @@ import { required, maxLength, minValue, numeric,alpha, helpers } from '@vuelidat
 					</div>
 					</div> -->
   					<div class="form-group buttons mt-3">
-  						<button type="button" class="btn btn-block btn-success btn-lg">
+  						<button type="button" class="btn btn-block btn-success btn-lg mx-auto">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
 								<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
 								<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
