@@ -6,6 +6,7 @@ import { reactive, ref, onMounted, computed, watch } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 
 const id = ref(0);
+let cont = 0;
 const dataRoomS = ref([]);
 const dataRoomE = ref([]);
 const bandera = ref(true);
@@ -35,21 +36,50 @@ const sendItem = (data) => {
   bandera.value = false;
 };
 
-const sendItem2 = (data2) => {
+const sendItem2 = (data2,index) => {
   arrayIds.value.push(data2)
   console.log( arrayIds.value)
   
-
-    
 
     const arrayIds2 = new Set(arrayIds.value);
 
     let result = [...arrayIds2];
 
-    console.log(result); 
+    console.log(result,"yeni"); 
 
-    // const result2 = words.filter(word => word.length > 6);
+    const location = result.indexOf(data2)
+    console.log(cont,"h")
+   
+  
+const specimens = result.filter((number, i) => i == 0 ? true : result[i - 1] != number);
+const counterSpecimens = specimens.map(spec => {
+    return {number: spec, count: 0};
+});
 
+counterSpecimens.map((countSpec, i) =>{
+    const actualSpecLength = result.filter(number => number === countSpec.number).length;
+    countSpec.count = actualSpecLength;
+})
+
+console.log(counterSpecimens);
+
+
+    if(result.includes(data2)){
+      cont+=1
+      if(cont>0){
+        cont-=0
+        result.splice(data2, 1);
+        console.log(result,"diego")
+      }
+      
+     
+    }
+   
+
+    console.log(location); 
+
+
+    
  
 };
 
