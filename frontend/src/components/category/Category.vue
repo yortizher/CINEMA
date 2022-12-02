@@ -74,6 +74,7 @@ const clear = () => {
   v$.value.$reset()
   formCategory.value.name = "";
 }
+
 </script>
 <template>
 <div class="container my-5">
