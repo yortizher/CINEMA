@@ -20,7 +20,7 @@ age_range: 18
 -- room
 
 {
-"names": "VIP 2 Western",
-"capacity": 20 , 
+"name": "VIP  Southern",
+"capacity": 5 , 
 "desc_location": "2nd floor next to tickets station"
 }
