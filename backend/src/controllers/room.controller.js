@@ -101,7 +101,7 @@ export const editResponse = async (req,res) => {
     const { id } = req.params
     try {
 
-        const { name, capacity,  desc_location, seats_distribution, data } = req.body
+        const { name, capacity,  desc_location  } = req.body
 
         const convertValue = val => {
             let capacidad = val
@@ -129,23 +129,6 @@ export const editResponse = async (req,res) => {
             return res
             }
         
-            const searchByid = await Room.findOne({
-                where: {
-                    id
-                }
-            })
-
-            const resData = searchByid.seats_distribution
-
-            const result = arr => arr.map(element => {
-                const ticket = data.find(item => item === element.ID)
-                if(ticket === element.ID) {
-                    element["State"] = "Unavailable"
-                }
-                return {
-                    ...element
-                }
-            } )
 
         const editRegister = await Room.findByPk(id)
 
@@ -169,14 +152,9 @@ export const editResponse = async (req,res) => {
             editRegister.desc_location = desc_location
             await editRegister.save()
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
-        } else if(name) {
+        } else  {
             editRegister.name = name
             editRegister.desc_location = desc_location
-            await editRegister.save()
-            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
-        }else {
-            
-            editRegister.seats_distribution = result(resData)
             await editRegister.save()
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
         }

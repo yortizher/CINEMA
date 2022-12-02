@@ -11,6 +11,7 @@ import { roomRouter } from "./routes/room.route.js";
 import { movieRouter } from "./routes/movie.route.js";
 import { categoryRouter } from "./routes/category.route.js";
 import { sellRouter } from "./routes/sell.route.js";
+import { updateStateRouter } from "./routes/update-state.route.js";
 const app = express()
 
 app.use(cors())
@@ -26,6 +27,7 @@ app.use('/api/v1/category', categoryRouter)
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/room', roomRouter)
 app.use('/api/v1/sell', sellRouter)
+app.use('/api/v1/update-state', updateStateRouter)
 app.use('*', errorRouter)
 
 
