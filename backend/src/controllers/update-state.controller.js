@@ -29,9 +29,14 @@ export const editResponse = async (req,res) => {
 
         const editRegister = await Room.findByPk(id)
 
+        if (data) {
             editRegister.seats_distribution = result(resData)
             await editRegister.save()
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
+        } else {
+            res.status(500).json({error: `Los campos no pueden estar vacíos o ser inválidos. Envia el ID de los asientos que cambiarán a 'Unavailable'`})
+        }
+           
        
       } catch (err) {
         return res.status(500).json({ message: err})
