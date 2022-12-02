@@ -17,8 +17,8 @@ export const editResponse = async (req,res) => {
 
             const resData = searchByid.seats_distribution
 
-            const result = (...arr) => arr.map(element => {
-                const ticket = data.find(item => item === element.ID)
+            const result = arr => arr.map(element => {
+                const ticket = (...data) =>  data.find(item => item === element.ID)
                 if(ticket === element.ID) {
                     element["State"] = "Unavailable"
                 }
