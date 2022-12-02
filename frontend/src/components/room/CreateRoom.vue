@@ -78,7 +78,7 @@ const sendData = async () => {
 
 const getSalas = () => {
   const urlData =
-    "https://cinema-production-cb13.up.railway.app/api/v1/roomhttps://cinema-production-cb13.up.railway.app/api/v1/room";
+    "https://cinema-production-cb13.up.railway.app/api/v1/room";
   fetch(urlData)
     .then((resp) => resp.json())
     .then((data) => (salas.value = data));
@@ -115,7 +115,7 @@ const message1 = (text) => {
           <div class="division">
             <hr class="line" />
           </div>
-          <form @submit.prevent="submitForm()" class="form">
+          <form @submit.prevent="submitForm" class="form">
             <div class="form-group">
               <input
                 type="text"
@@ -181,7 +181,7 @@ const message1 = (text) => {
                 </svg>
                 Guardar
               </button>
-              <button type="button" class="btn btn-block btn-primary btn-lg">
+              <button type="submit" class="btn btn-block btn-primary btn-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
