@@ -115,7 +115,7 @@ const message1 = (text) => {
           <div class="division">
             <hr class="line" />
           </div>
-          <form @submit.prevent="submitForm()" class="form">
+          <form  class="form">
             <div class="form-group">
               <input
                 type="text"
