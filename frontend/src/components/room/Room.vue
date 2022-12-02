@@ -11,6 +11,7 @@ const dataRoomS = ref([]);
 const dataRoomE = ref([]);
 const bandera = ref(true);
 const arrayIds = ref([]);
+const arrayIds2 = ref("");
 const color ="background-color:'green'"
 // const arrayIds2 = ref([])
 
@@ -30,14 +31,14 @@ const dataRoomId = async () => {
   await fetch(urlData)
     .then((resp) => resp.json())
     .then((data) => (dataRoomE.value = data));
-
+    
 };
 
 const sendData = async () => {
   const formData = new FormData();
   formData.append("data", arrayIds.value);
 
-  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/update-state/${id.value}`;
+  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/unavailable/${id.value}`;
   await fetch(urlDB, {
     method: "PUT",
     body: formData,
@@ -45,6 +46,8 @@ const sendData = async () => {
     .then((response) => response)
     .then((data) => {
       console.log(data);
+      dataRoomId();
+     
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -59,6 +62,39 @@ const sendData = async () => {
   console.log("todo bien")
 };
 
+
+
+const sendData2 = async () => {
+  const formData = new FormData();
+  formData.append("data", arrayIds.value);
+
+  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/available/${id.value}`;
+  await fetch(urlDB, {
+    method: "PUT",
+    body: formData,
+  })
+    .then((response) => response)
+    .then((data) => {
+      console.log(data);
+      dataRoomId();
+     
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  // message(
+  //   "center",
+  //   "Creación completada",
+  //   "Se ha creado correctamente el registro",
+  //   1500
+  // );
+  console.log("todo bien")
+};
+
+
+
+
 const sendItem = (data) => {
   id.value = data;
   bandera.value = false;
@@ -66,22 +102,25 @@ const sendItem = (data) => {
 };
 
 const sendItem2 = (data2,index) => {
-  console.log(dataRoomE.value)
-  const location = [...arrayIds.value].indexOf(data2)
-  console.log(location)
-  if([...arrayIds.value].indexOf(data2) >= 0){
-    console.log('EL VALOR YA EXISTE')
-    arrayIds.value.splice(location,1)
-  }else{
-    console.log('EL VALOR NO EXISTE')
-    arrayIds.value.push(data2)
-  }
-
+  arrayIds.value.push(data2)
+  console.log( "Agregado",arrayIds.value)
+  arrayIds.value.toString()
+  console.log( "ENVIADO",arrayIds.value)
   sendData();
-  
-  console.log( [...arrayIds.value])
+  // dataRoomId();
+  arrayIds.value.pop()
+  // location. reload()
+};
 
-  
+const sendItem3 = (data2,index) => {
+  arrayIds.value.push(data2)
+  console.log( "Agregado",arrayIds.value)
+  arrayIds.value.toString()
+  console.log( "ENVIADO",arrayIds.value)
+  sendData2();
+  // dataRoomId();
+  arrayIds.value.pop()
+  // location. reload()
 };
 
 onMounted(() => {
@@ -115,7 +154,7 @@ onMounted(() => {
     <div class="flex-container">
         <div  v-for="item in dataRoomE.seats_distribution" :key="item.ID" class="card1">
           <button v-if="item.State=='Available'"   @click="sendItem2(item.ID)" class="text-yellow" style="background:green" >{{ item.ID }} </button>
-          <button v-else  style="background:red"  @click="sendItem2(item.ID)" class="text-yellow" >{{ item.ID }} </button>
+          <button v-else  style="background:red"  @click="sendItem3(item.ID)" class="text-yellow" >{{ item.ID }} </button>
         </div>
 
     </div>
