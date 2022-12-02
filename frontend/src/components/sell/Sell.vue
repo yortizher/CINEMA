@@ -18,12 +18,12 @@ const state = reactive({
 
 const clear = () => {
   $v.value.$reset(); // ayuda a que no este todo en rojo
-  (billboard_id = ""),
-    (amount = ""),
-    (user_id = ""),
-    (total = ""),
-    (price = ""),
-    (seats = "");
+    (state.billboard_id = ""),
+    (state.amount = ""),
+    (state.user_id = ""),
+    (state.total = ""),
+    (state.price = ""),
+    (state.seats = "");
 };
 
 const rules = computed(() => {
@@ -148,46 +148,42 @@ const message1 = (text) => {
             <hr class="line" />
           </div>
           <form @submit.prevent="submitForm" class="form">
-            <div class="form-group">
-              <select class="form-select" aria-label="Default select example">
+            <!-- <div class="form-group">
+              <select  v-model="state.billboard_id" class="form-select" aria-label="Default select example">
                 <option value="1" v-text="billboard_id"></option>
               </select>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Nombre"
-                v-model="state.billboard_id"
-              />
               <span
                 v-for="error in $v.billboard_id.$errors"
                 .key="error.$uid"
                 style="color: FireBrick"
                 >{{ error.$message }}</span
               >
-            </div>
+            </div> -->
+            
             <div class="form-group">
               <input
                 type="number"
                 class="form-control"
                 placeholder="Capacidad "
-                v-model.number="state.capacity"
+                v-model="state.amount"
               />
               <span
-                v-for="error in $v.capacity.$errors"
+                v-for="error in $v.amount.$errors"
                 .key="error.$uid"
                 style="color: FireBrick"
                 >{{ error.$message }}</span
               >
             </div>
+
             <div class="form-group">
               <input
                 type="text"
                 class="form-control"
                 placeholder="Descripción"
-                v-model="state.desc_location"
+                v-model="state.total"
               />
               <span
-                v-for="error in $v.desc_location.$errors"
+                v-for="error in $v.total.$errors"
                 .key="error.$uid"
                 style="color: FireBrick"
                 >{{ error.$message }}</span
