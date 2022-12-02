@@ -140,7 +140,7 @@ export const editResponse = async (req,res) => {
             editRegister.seats_distribution = convertValue(capacity)
             await editRegister.save()
         
-                res.status(200).json({message: `Register with id:${id} was succesfully edited`, responseData  })
+                res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister  })
             
         } else if (name ) {
             editRegister.name = name
