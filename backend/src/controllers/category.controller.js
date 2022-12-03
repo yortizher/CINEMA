@@ -3,7 +3,7 @@ import  { Category } from '../models/category.model.js'
 
 export const getResponses = async (req,res) => {
     try{
-        const list = await Category.findAll({ include: { all: true }})
+        const list = await Category.findAll()
         res.status(200).json(list)
     }catch(err){
         console.log(err);
