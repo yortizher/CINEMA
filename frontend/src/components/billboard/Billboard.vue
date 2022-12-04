@@ -66,12 +66,12 @@ const submitForm = async () => {
 
 const sendData = async () => {
   const formData = new FormData();
-  formData.append("billboard_id", state.room_id);
-  formData.append("amount", state.movie_id);
-  formData.append("user_id", state.start_date);
-  formData.append("total", state.end_date);
-  formData.append("user_id", state.price);
-  formData.append("total", state.schedule_id);
+  formData.append("room_id", state.room_id);
+  formData.append("movie_id", state.movie_id);
+  formData.append("start_date", state.start_date);
+  formData.append("end_date", state.end_date);
+  formData.append("price", state.price);
+  formData.append("schedule_id", state.schedule_id);
 
   const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/billboard`;
   await fetch(urlDB, {
@@ -81,6 +81,7 @@ const sendData = async () => {
     .then((response) => response)
     .then((data) => {
       console.log(data);
+      clear();
     })
     .catch((error) => {
       console.error("Error:", error);
