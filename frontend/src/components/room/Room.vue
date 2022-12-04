@@ -135,7 +135,7 @@ onMounted(() => {
     <div class="container">
       <div v-for="item in dataRoomS" :key="item.id" class="card">
      
-        <h5 class="card-title" v-text="item.name"></h5>
+        <h5 class="card-title" v-text="item.name.toUpperCase()"></h5>
         <h6 class="card-subtitle mb-2">Capacidad <br />{{ item.capacity }}</h6>
         <p class="card-text" v-text="item.desc_location"></p>
         <button
@@ -149,12 +149,16 @@ onMounted(() => {
   </div>
   <div class="container1" v-else>
     <div class="title">
-      <h1>{{ dataRoomE.name }}</h1>
+      <h1>{{ dataRoomE.name.toUpperCase()}}</h1>
     </div>
     <div class="flex-container">
         <div  v-for="item in dataRoomE.seats_distribution" :key="item.ID" class="card1">
           <button v-if="item.State=='Available'"   @click="sendItem2(item.ID)" class="text-yellow" style="background:green" >{{ item.ID }} </button>
           <button v-else  style="background:red"  @click="sendItem3(item.ID)" class="text-yellow" >{{ item.ID }} </button>
+        </div>
+
+        <div class="rectangulo">
+
         </div>
 
     </div>
@@ -198,10 +202,7 @@ onMounted(() => {
   text-align: center;
   transition: all 0.25s;
 
-  background: rgba(106, 4, 15, 0.5);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(106, 4, 15, 0.25);
+  background-color: var(--blue);
 }
 .container .card:hover {
   transform: translateY(-15px);
@@ -254,5 +255,14 @@ onMounted(() => {
   text-align: center;
   background-color: black;
  
+}
+.rectangulo{
+  margin-top: 10%;
+
+  height: 1rem;
+  width: 40.5rem;
+  border-style: solid;
+  border-color: white;
+  border-width: 34px;
 }
 </style>
