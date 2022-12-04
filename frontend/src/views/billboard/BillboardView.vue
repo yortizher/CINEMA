@@ -1,8 +1,7 @@
-<template>
-    <div class="container-main">
-     <h2>Billboard View</h2>
-    </div>
-</template>
-<style scoped>
+<script setup>
+import BillboardVue from '../../components/billboard/Billboard.vue';
+</script>
 
-</style>
+<template>
+   <BillboardVue/>
+</template>

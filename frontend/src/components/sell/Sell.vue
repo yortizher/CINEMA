@@ -5,6 +5,7 @@ import { required, helpers } from "@vuelidate/validators";
 
 const rsp = ref([]);
 const billboard = ref([]);
+const billboardItem = ref([]);
 const user = ref([]);
 
 const state = reactive({
@@ -12,18 +13,14 @@ const state = reactive({
   amount: "",
   user_id: "",
   total: "",
-  price: "",
-  seats: "",
 });
 
 const clear = () => {
   $v.value.$reset(); // ayuda a que no este todo en rojo
-    (state.billboard_id = ""),
+  (state.billboard_id = ""),
     (state.amount = ""),
     (state.user_id = ""),
-    (state.total = ""),
-    (state.price = ""),
-    (state.seats = "");
+    (state.total = "");
 };
 
 const rules = computed(() => {
@@ -49,15 +46,6 @@ const rules = computed(() => {
     total: {
       required: helpers.withMessage("El campo total es obligatorio", required),
     },
-    price: {
-      required: helpers.withMessage("El precio total es obligatorio", required),
-    },
-    seats: {
-      required: helpers.withMessage(
-        "El campo cantidad sillas es obligatorio",
-        required
-      ),
-    },
   };
 });
 
@@ -80,8 +68,6 @@ const sendData = async () => {
   formData.append("amount", state.amount);
   formData.append("user_id", state.user_id);
   formData.append("total", state.total);
-  formData.append("price", state.price);
-  formData.append("seats", state.seats);
 
   const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/sell`;
   await fetch(urlDB, {
@@ -137,20 +123,53 @@ const message1 = (text) => {
     text: text,
   });
 };
+
+const sendDataBillboard = async() => {
+  console.log("entro")
+  console.log(state.billboard_id)
+  const urlData1 =
+    `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${state.billboard_id}`;
+    await fetch(urlData1)
+    .then((resp) => resp.json())
+    .then((data) => (billboardItem.value = data));
+     console.log(billboardItem.value)
+     console.log(billboardItem.value.price)
+     multplication();
+};
+
+const multplication = () =>{
+  state.total= (state.amount*billboardItem.value.price)
+}
+
+onMounted(() => {
+  getBillboard();
+  getUser();
+});
 </script>
 <template>
   <div class="container my-5">
     <div class="row d-flex justify-content-center mt-5">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="container-form py-3 px-2">
-          <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar salas</h2>
+          <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar venta</h2>
           <div class="division">
             <hr class="line" />
           </div>
           <form @submit.prevent="submitForm" class="form">
-            <!-- <div class="form-group">
-              <select  v-model="state.billboard_id" class="form-select" aria-label="Default select example">
-                <option value="1" v-text="billboard_id"></option>
+            <div class="form-group">
+              <select
+                id="disabledSelect"
+                class="form-select"
+                v-model="state.billboard_id"
+                @change="sendDataBillboard()"
+              >
+                <option value="" selected disabled>Seleccione cartelera</option>
+                <option
+                  v-for="(item, i) in billboard"
+                  :value="item.id"
+                  v-text="item.id"
+                  :key="i"
+                ></option>
               </select>
               <span
                 v-for="error in $v.billboard_id.$errors"
@@ -158,14 +177,15 @@ const message1 = (text) => {
                 style="color: FireBrick"
                 >{{ error.$message }}</span
               >
-            </div> -->
-            
+            </div>
+
             <div class="form-group">
               <input
                 type="number"
                 class="form-control"
-                placeholder="Capacidad "
+                placeholder="Cantidad boletos"
                 v-model="state.amount"
+                @change="multplication()"
               />
               <span
                 v-for="error in $v.amount.$errors"
@@ -176,10 +196,32 @@ const message1 = (text) => {
             </div>
 
             <div class="form-group">
+              <select
+                id="disabledSelect"
+                class="form-select"
+                v-model="state.user_id"
+              >
+                <option value="" selected disabled>Seleccione usuario</option>
+                <option
+                  v-for="(item, i) in user"
+                  :value="item.id"
+                  v-text="item.name"
+                  :key="i"
+                ></option>
+              </select>
+              <span
+                v-for="error in $v.user_id.$errors"
+                .key="error.$uid"
+                style="color: FireBrick"
+                >{{ error.$message }}</span
+              >
+            </div>
+
+            <div class="form-group">
               <input
-                type="text"
+                type="number"
                 class="form-control"
-                placeholder="Descripción"
+                placeholder="Total"
                 v-model="state.total"
               />
               <span
