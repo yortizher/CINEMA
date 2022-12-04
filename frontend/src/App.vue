@@ -11,13 +11,13 @@ import CreateRoom from "./components/room/CreateRoom.vue"
 </script>
 
 <template>
-  <SellVue/> 
+  <!-- <SellVue/>  -->
   <!-- <CreateRoom/> -->
 
   <!-- <RoomViewVue/> -->
   <!-- <RoomVue/> -->
-   <!-- <Menu/> -->
-  <!-- <RouterView /> -->
+   <Menu/>
+  <RouterView />
 </template>
 
 <style scoped>
