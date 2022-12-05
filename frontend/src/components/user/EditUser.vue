@@ -1,5 +1,5 @@
 <script setup>
-import {  ref, onMounted, computed } from 'vue'
+import {  ref, onMounted, computed,reactive } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, maxLength, minValue, numeric,alpha, helpers } from '@vuelidate/validators'
 import { useRouter, useRoute } from 'vue-router'
@@ -19,13 +19,19 @@ const formUser = ref({
   phone: "",
   email: "",
 }); 
+const users = reactive([]);
 
 const getUser = () => {
-   const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/movie"
+   const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/user"
    fetch(urlData)
    .then(resp => resp.json())
-   .then(data => filterUser.value = data )
-   console.log(filterUser )
+  //  .then(data => users.value = data.filter(d => d.id == user_id.value) )
+  //  console.log(users)
+  // .then(data => formUser.value = data.filter(d => d.id == user_id.value) )
+  .then(data => formUser.value = data.find(d => d.id == user_id.value) )
+  console.log(formUser)
+  console.log(formUser.value.name)
+  console.log(formUser.value.id)
 }
 
 onMounted(()=> {
@@ -60,8 +66,8 @@ const v$ = useVuelidate(rules, formUser)
 const submitForm = async () => {
   const result = await v$.value.$validate();
   if(result) {
-    // editUser();
-    clear();
+    editUser();
+    // clear();
   } else {
     messageError("Verifique que todos los campos este llenos");
   }
@@ -95,6 +101,7 @@ const editUser = async () => {
   formData.append("email", formUser.value.email);
 
  console.log(formData)
+ console.log(formData.name, formData.lastname, formData.cc, formData.address, formData.phone, formData.email)
   const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/user/${user_id.value}`;
 
   await fetch(urlDB, {
@@ -109,6 +116,7 @@ const editUser = async () => {
           "Se ha actualizado correctamente la categoria",
           1500
         );
+        console.log(response)
       })
 	  .then((data) => {
 		console.log(data)
@@ -142,31 +150,31 @@ const clear = () => {
 				  </div>
 				  <form class="form">
 					  <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Nombre">
+						  <input type="text" class="form-control" placeholder="Nombre" v-model="formUser.name">
 						  <!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					   <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Apellido">	
+						  <input type="text" class="form-control" placeholder="Apellido" v-model="formUser.lastname">	
 						  <!-- <span v-for="error in v$.lastname.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Documento">
+						  <input type="text" class="form-control" placeholder="Documento" v-model="formUser.cc">
 						  <!-- <span v-for="error in v$.cc.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Dirección">
+						  <input type="text" class="form-control" placeholder="Dirección" v-model="formUser.address">
 						  <!-- <span v-for="error in v$.address.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					   <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Teléfono">
+						  <input type="text" class="form-control" placeholder="Teléfono" v-model="formUser.phone">
 						  <!-- <span v-for="error in v$.phone.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="email" class="form-control" placeholder="Email">
+						  <input type="email" class="form-control" placeholder="Email" v-model="formUser.email">
 						  <!-- <span v-for="error in v$.email.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 						<div class="form-group buttons mt-3">
-							<button type="button" class="btn btn-block btn-success btn-lg mx-auto">
+							<button type="button" class="btn btn-block btn-success btn-lg mx-auto" @click="submitForm()">
 							  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
 								  <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
 								  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>

@@ -5,9 +5,10 @@ import { required, maxLength, minValue, numeric,alpha, helpers } from '@vuelidat
 
 
 const categories = ref([]);
-
+let action = ref(true);
 const formMovie = ref({
   name: "",
+  img_url: "",
   category: "",
   duration: 0,
   synopsis:"",
@@ -33,6 +34,9 @@ const rules = computed (() =>{
     category: {
        required:helpers.withMessage("El campo Cateroria es obligatorio", required ) 
     },
+	img_url: {
+		required:helpers.withMessage("El campo imagen es obligatorio", required )
+	},
     duration: { 
       required:helpers.withMessage("El campo duración es obligatorio", required )
     },
@@ -77,10 +81,34 @@ const messageError = ( text) => {
   });
 };
 
+let img_file = ref("");
+
+const getImage = (e) => {
+  let file = e.target.files[0];
+  console.log(file);
+  formMovie.value.img_url = file;
+  showPicture(file);
+};
+
+const showPicture = (file) => {
+  let reader = new FileReader();
+
+  reader.onload = (e) => {
+    img_file.value = e.target.result;
+  };
+  reader.readAsDataURL(file);
+};
+
+const imagenComputed = computed(() => {
+  return img_file.value;
+});
+
+
 const RegistrationMovie = async () => {
   const formData = new FormData();
   formData.append("name", formMovie.value.name);
   formData.append("category_id",formMovie.value.category);
+  formData.append("img_url",formMovie.value.img_url);
   formData.append("duration", formMovie.value.duration);
   formData.append("synopsis", formMovie.value.synopsis);
   formData.append("age_range", formMovie.value.age_range);
@@ -110,12 +138,11 @@ const clear = () => {
   v$.value.$reset()
   formMovie.value.name = "";
   formMovie.value.category = "";
+  formMovie.value.img_url = "";
   formMovie.value.duration = "";
   formMovie.value.synopsis ="";
   formMovie.value.age_range = "";
 }
-
-
 </script>
 <template>
 <div class="container my-5">
@@ -149,6 +176,37 @@ const clear = () => {
     					<input type="text" class="form-control" placeholder="Rango de Edad" v-model.number="formMovie.age_range">
 						<span v-for="error in v$.age_range.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
   					</div>
+					  <!-- <div  class="form-group">
+                        <input type="file" class="fancy-file" name="fileImg" accept="=image/*" multiple/>
+						<label>
+							<span class="fancy-file__fancy-file-name">Ninguna Imagen seleccionada</span>
+							<span class="fancy-file__fancy-file-button">Seleccione Imagen</span>
+						</label>
+					  </div> -->
+					<div class="form-group">
+            			<input type="file" @change="getImage" class="form-control"/>
+						<!-- <span v-for="error in v$.img_url.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						<div v-if="action" class="mt-3">
+							<figure v-if="formMovie.img_url">
+								<img
+								:src="imagenComputed"
+								class="img"
+								alt="Imagen seleccionada"
+								v-mode="formMovie.img_url"
+								/>
+							</figure>
+						</div>
+						<div class="mt-3" v-else>
+							<figure v-if="formMovie.img_url">
+								<img
+								:src="formMovie.img_url"
+								class="img"
+								alt="Imagen seleccionada"
+								v-mode="formMovie.img_url"
+								/>
+							</figure>
+						</div>
+					</div>
   					<div class="form-group buttons mt-3">
   						<button type="button" class="btn btn-block btn-success btn-lg" @click="submitForm()">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
@@ -172,8 +230,29 @@ const clear = () => {
 </div>
 </template>
 <style scoped>
-
-
+.fancy-file{
+	/* display: none; */
+}
+.fancy-file + label {
+	display: flex;
+}
+.fancy-file__fancy-file-name,
+.fancy-file__fancy-file-button{
+	padding: 5px 14px;
+}
+.fancy-file__fancy-file-name {
+  background-color: #eee;
+  border: 1px solid #cacaca;
+  white-space: nowrap;
+  border-radius: 4px 0 0 4px;
+}
+.fancy-file__fancy-file-button{
+   background-color: #5bc0de;
+   border: 1px solid #5bc0de;
+   color: white;
+   white-space: nowrap;
+   border-radius: 0 4px  4px 0;
+}
 .container-form{
 	border: none;
 	border-top: 5px solid  var(--medium_purple);
@@ -201,6 +280,15 @@ const clear = () => {
 .form-group {
   margin-bottom: 20px;
 }
+
+.img {
+    width: 50%;
+    height: 10rem;
+    object-fit: cover;
+    transition: all .3s ease-in-out;    
+    transform: scale(1);
+}
+
 .form-select,
 .form-control{
 	border: 1px solid var(--purple_navy);
@@ -209,8 +297,7 @@ const clear = () => {
 	letter-spacing: 1px;
     color: var(--light_gray);
 }
-.form-select:focus,
-.form-control:focus{
+.form-select:focus,.form-control:focus{
 	border: 1px solid  var(--medium_purple);
 	border-radius: 3px;
 	box-shadow: none;
@@ -240,6 +327,7 @@ const clear = () => {
 	box-shadow: none;
 	border: none;
 } 
+
 
 
 @media(min-width: 767px){

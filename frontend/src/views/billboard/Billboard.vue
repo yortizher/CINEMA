@@ -3,11 +3,6 @@ import { reactive, ref, onMounted, computed, watch } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { useRoomStore } from "@/stores/room.js";
-import { storeToRefs } from "pinia";
-const dataPinea = useRoomStore(); //no olvidar los parentisis
-const { idBillboard } = storeToRefs(dataPinea);
-
 // const rsp = ref([]);
 const room = ref([]);
 const schedule = ref([]);
@@ -69,10 +64,7 @@ const submitForm = async () => {
   }
 };
 
-let URL = window.location;
-
 const sendData = async () => {
- 
   const formData = new FormData();
   formData.append("room_id", state.room_id);
   formData.append("movie_id", state.movie_id);
@@ -81,9 +73,9 @@ const sendData = async () => {
   formData.append("price", state.price);
   formData.append("schedule_id", state.schedule_id);
 
-  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${idBillboard.value}`;
+  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/billboard`;
   await fetch(urlDB, {
-    method: "PUT",
+    method: "POST",
     body: formData,
   })
     .then((response) => response)
@@ -97,11 +89,10 @@ const sendData = async () => {
 
   message(
     "center",
-    "Actualización completada",
-    "Se ha actualizado correctamente el registro",
+    "Creación completada",
+    "Se ha creado correctamente el registro",
     1500
   );
-  
 };
 
 const getMovie = () => {
@@ -171,7 +162,6 @@ onMounted(() => {
   getMovie();
   getRoom();
   getsChedule();
- 
 });
 </script>
 <template>
@@ -179,7 +169,7 @@ onMounted(() => {
     <div class="row d-flex justify-content-center mt-5">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="container-form py-3 px-2">
-          <h2 class="text-center mb-3 mt-2 h2 text-white">Actualizar cartelera</h2>
+          <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar cartelera</h2>
           <div class="division">
             <hr class="line" />
           </div>
