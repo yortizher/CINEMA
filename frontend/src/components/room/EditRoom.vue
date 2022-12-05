@@ -3,6 +3,12 @@ import { reactive, ref, onMounted, computed, watch } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
+import { useRoomStore } from "@/stores/room.js";
+import { storeToRefs } from "pinia";
+const dataPinea = useRoomStore(); //no olvidar los parentisis
+const { idRoom } = storeToRefs(dataPinea);
+
+
 const rsp = ref([]);
 const salas = ref([]);
 
@@ -44,7 +50,6 @@ const submitForm = async () => {
   const result = await $v.value.$validate();
   if (result) {
     sendData();
-    clear();
   } else {
     message1("Verifique que todos los campos este llenos");
   }
@@ -56,36 +61,36 @@ const sendData = async () => {
   formData.append("capacity", state.capacity);
   formData.append("desc_location", state.desc_location);
 
-  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/room`;
+  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/room/${idRoom.value}`;
   await fetch(urlDB, {
-    method: "POST",
+    method: "PUT",
     body: formData,
   })
     .then((response) => response)
     .then((data) => {
-      
       console.log(data);
+
+      message(
+    "center",
+    "Actualización completada",
+    "Se ha actualizado correctamente el registro",
+    1500
+  );
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 
-  message(
-    "center",
-    "Creación completada",
-    "Se ha creado correctamente el registro",
-    1500
-  );
-  
+ 
 };
 
-const getSalas = () => {
-  const urlData =
-    "https://cinema-production-cb13.up.railway.app/api/v1/room";
-  fetch(urlData)
-    .then((resp) => resp.json())
-    .then((data) => (salas.value = data));
-};
+// const getSalas = () => {
+//   const urlData =
+//     "https://cinema-production-cb13.up.railway.app/api/v1/room";
+//   fetch(urlData)
+//     .then((resp) => resp.json())
+//     .then((data) => (salas.value = data));
+// };
 
 const message = (position, title, text, time) => {
   Swal.fire({
@@ -105,6 +110,9 @@ const message1 = (text) => {
     text: text,
   });
 };
+
+
+
 </script>
 <template>
   <div class="container my-5">
@@ -113,7 +121,7 @@ const message1 = (text) => {
         
         <div class="container-form py-3 px-2">
           <h2 class="text-center mb-3 mt-2 h2 text-white">
-            Registrar salas
+            Editar sala
           </h2>
           <div class="division">
             <hr class="line" />
@@ -133,6 +141,7 @@ const message1 = (text) => {
                 >{{ error.$message }}</span
               >
             </div>
+
             <div class="form-group">
               <input
                 type="number"
@@ -184,24 +193,6 @@ const message1 = (text) => {
                 </svg>
                 Guardar
               </button>
-              <RouterLink to="/consultRoom" type="submit" class="btn btn-block btn-primary btn-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-eye"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
-                  />
-                  <path
-                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
-                  />
-                </svg>
-                Consultar
-              </RouterLink >
             </div>
           </form>
         </div>

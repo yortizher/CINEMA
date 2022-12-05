@@ -15,7 +15,7 @@
         <li><RouterLink to="/category" href="#">Categorias</RouterLink></li>
         <li><RouterLink to="/movie" href="#">Peliculas</RouterLink></li>
         <li><RouterLink to="/billboard" href="#">Cartelera</RouterLink></li>
-        <li><RouterLink to="/room" href="#">Sala</RouterLink></li>
+        <li><RouterLink to="/createRoom" href="#">Sala</RouterLink></li>
     </ul>
   </div>
 </template>
