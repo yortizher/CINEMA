@@ -15,6 +15,7 @@ console.log("categories_id",categories_id.value)
 
 const formCategory = ref({
   id:"",
+  name: "",
   up_name: "",
 }); 
 const filterCategories = ref([]);
@@ -52,9 +53,9 @@ const getCategories = () => {
 onMounted(()=> {
 	getCategories();
 });
-const filterSearch = computed(() => {
+const filter = computed(() => {
 	for (let x in filterCategories.value) {
-		if(filterCategories.value[x].id == categories_id.value) {
+		if(filterCategories.value[x].id == schedules_id.value) {
 			formCategory.value.id = filterCategories.value[x].id,
 			formCategory.value.name = filterCategories.value[x].name	
 		}
@@ -122,13 +123,12 @@ const clear = () => {
 				<h2 class="text-center mb-3 mt-2 h2 text-white">Editar Categoria</h2>
 				<div class="division">
 					<hr class="line">
-					{{filterSearch}}
 				</div>
 				<form class="form" @submit.prevent="submitForm()">
 					<div class="form-group">
     					<!-- <input type="text" class="form-control" placeholder="Nombre"> -->
 						<input type="text" class="form-control" :placeholder="formCategory.name" v-model="formCategory.up_name"/>
-						<!-- <span v-for="error in v$.up_name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						<!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
   					<div class="form-group buttons mt-3">
   						<button type="submit"  class="btn btn-block btn-success btn-lg mx-auto">

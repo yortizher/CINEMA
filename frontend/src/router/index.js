@@ -4,15 +4,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: HomeView
-    // },
     {
       path: '/billboard',
       name: 'billboard',
-      component: () => import('../views/billboard/BillboardView.vue')
+      component: () => import('../views/billboard/Billboard.vue')
     },
     {
       path: '/consultBillboard',
@@ -22,7 +17,7 @@ const router = createRouter({
     {
       path: '/editBillboard/:id',
       name: 'editBillboard',
-      component: () => import('../components/billboard/editBillboard.vue')
+      component: () => import('../components/billboard/EditBillboard.vue')
     },
     {
       path: '/EditRoom/:id', 
@@ -131,6 +126,7 @@ const router = createRouter({
       name: "NotFound",
       component: () => import("../NotFoundView.vue"),
   }
+   
 
   ]
 })

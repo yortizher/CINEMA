@@ -77,7 +77,7 @@ onMounted(()=> {
 // console.log(filterSche)
 // console.log(start_time)
 // });
-const filterSearch = computed(() => {
+const filterSche = computed(() => {
 	for (let x in filterSchedules.value) {
 		if(filterSchedules.value[x].id == schedules_id.value) {
 			formTime.value.id = filterSchedules.value[x].id,
@@ -154,13 +154,13 @@ const clear = () => {
 				<h2 class="text-center mb-3 mt-2 h2 text-white">Editar Horario</h2>
 				<div class="division">
 					<hr class="line">
-					{{filterSearch}}
+					{{filterSche}}
 				</div>
 				<form class="form" @submit.prevent="submitForm()">
 					<div class="form-group">
 						<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" @input="getStart_time($event)" v-model="formTime.start_time"> -->
     					<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" :value="formTime.start_time"> -->
-						<input type="time" class="form-control" :placeholder="formTime.start_time" v-model="formTime.up_time"/>
+						<input type="text" class="form-control" :placeholder="formTime.start_time" v-model="formTime.up_time"/>
 					     <!-- <input type="time" class="form-control"  v-model="formTime.start_time"/>  -->
 						<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" @input="filter($event)" v-model="formTime.start_time">  -->
 						<!-- v-if="item.id === schedules_id" v-model="item.start_time" -->

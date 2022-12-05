@@ -27,8 +27,9 @@ const getMovies = () => {
    const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/movie"
    fetch(urlData)
    .then(resp => resp.json())
-   .then(data => filterMovies.value = data )
-   console.log(filterMovies)
+//    .then(data => formMovie.value = data.filter(d => d.id == movie_id.value) )
+   .then(data => formMovie.value = data.find(d => d.id == movie_id.value) )
+   console.log(formMovie)
 }
 
 onMounted(()=> {
@@ -61,7 +62,7 @@ const v$ = useVuelidate(rules, formMovie)
 const submitForm = async () => {
   const result = await v$.value.$validate();
   if(result) {
-    editMovie();
+    // editMovie();
     clear();
   } else {
     messageError("Verifique que todos los campos este llenos");
@@ -139,7 +140,7 @@ const clear = () => {
 				</div>
 				<form class="form">
 					<div class="form-group">
-    					<input type="text" class="form-control" :placeholder="filterMovies.name" v-model="formMovie.name">
+    					<input type="text" class="form-control" placeholder="Nombre" v-model="formMovie.name">
 						<!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
  					<div class="form-group">
@@ -149,15 +150,15 @@ const clear = () => {
 						<!-- <span v-for="error in v$.category.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
 					<div class="form-group">
-    					<input type="text" class="form-control" :placeholder="filterMovies.duration" v-model="formMovie.duration">
+    					<input type="text" class="form-control" placeholder="Duración" v-model="formMovie.duration">
 						<!-- <span v-for="error in v$.duration.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
 					<div class="form-group">
-    					<input type="text" class="form-control" :placeholder="filterMovies.synopsis" v-model="formMovie.synopsis">
+    					<input type="text" class="form-control" placeholder="Sinopsis" v-model="formMovie.synopsis">
 						<!-- <span v-for="error in v$.synopsis.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
  					<div class="form-group">
-    					<input type="text" class="form-control" :placeholder="filterMovies.age_range" v-model="formMovie.age_range">
+    					<input type="text" class="form-control" placeholder="Rango de Edad" v-model="formMovie.age_range">
 						<!-- <span v-for="error in v$.age_range.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
 					<!-- <div class="form-group">

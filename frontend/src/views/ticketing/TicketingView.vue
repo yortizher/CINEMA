@@ -1,11 +1,5 @@
-<script setup>
-
-import SellVue from '../../components/sell/Sell.vue';
-
-</script>
-
 <template>
-
-    <SellVue/>
-
+   <div class="container-main">
+     <h2>Ticketing</h2>
+   </div>
 </template>
