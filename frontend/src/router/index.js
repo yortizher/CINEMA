@@ -15,6 +15,21 @@ const router = createRouter({
       component: () => import('../views/billboard/BillboardView.vue')
     },
     {
+      path: '/consultBillboard',
+      name: 'consultBillboard',
+      component: () => import('../components/billboard/ConsultBillboard.vue')
+    },
+    {
+      path: '/editBillboard/:id',
+      name: 'editBillboard',
+      component: () => import('../components/billboard/editBillboard.vue')
+    },
+    {
+      path: '/EditRoom/:id', 
+      name: 'EditRoom',
+      component: () => import('../components/room/EditRoom.vue')
+    },
+    {
       path: '/category',
       name: 'category',
       component: () => import('../views/category/CategoryView.vue')
@@ -89,20 +104,27 @@ const router = createRouter({
       name: 'editUser',
       component: () => import('../components/user/EditUser.vue')
     },
-    {
-      path: '/consultBillboard',
-      name: 'consultBillboard',
-      component: () => import('../components/billboard/ConsultBillboard.vue')
-    },
+  
+    
     {
       path: '/consultSell', 
       name: 'consultSell',
       component: () => import('../components/sell/ConsultSell.vue')
     },
     {
+      path: '/createRoom', 
+      name: 'createRoom',
+      component: () => import('../components/room/createRoom.vue')
+    },
+    {
       path: '/consultRoom', 
       name: 'consultRoom',
       component: () => import('../components/room/ConsultRoom.vue')
+    },
+    {
+      path: '/EditRoom/:id', 
+      name: 'EditRoom',
+      component: () => import('../components/room/EditRoom.vue')
     },
     {
       path: "/:pathMatch(.*)*",
