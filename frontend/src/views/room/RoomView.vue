@@ -1,5 +1,10 @@
+<script setup>
+import Room from "../../components/room/Room.vue"
+
+</script>
 <template>
-   <div class="container-main">
-    <h2>Room View</h2>
-   </div>
+    <Room/>
 </template>
+<style scoped>
+
+</style>

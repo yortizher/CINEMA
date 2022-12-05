@@ -3,50 +3,35 @@ import { reactive, ref, onMounted, computed, watch } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-// const rsp = ref([]);
-const room = ref([]);
-const schedule = ref([]);
-const movie = ref([]);
+const rsp = ref([]);
+const salas = ref([]);
 
 const state = reactive({
-    room_id: "",
-    movie_id: "",
-    start_date: "",
-    end_date: "",
-    price: "",
-    schedule_id: "",
+  name: "",
+  capacity: "",
+  desc_location: "",
 });
 
 const clear = () => {
-
-    $v.value.$reset(); // ayuda a que no este todo en rojo
-      (state.room_id = ""),
-      (state.movie_id = ""),
-      (state.start_date = ""),
-      (state.end_date = "");
-      (state.price = ""),
-      (state.schedule_id = "");
+  $v.value.$reset(); // ayuda a que no este todo en rojo
+  state.name = "";
+  state.capacity = "";
+  state.desc_location = "";
 };
 
-    
 const rules = computed(() => {
   return {
-    room_id: {
-      required: helpers.withMessage("El campo sala es obligatorio",required),
+    name: {
+      required: helpers.withMessage("El campo nombre es obligatorio", required),
     },
-    movie_id: {
-      required: helpers.withMessage("La campo pelicula es obligatorio",required),
+    capacity: {
+      required: helpers.withMessage("La capacidad es obligatoria", required),
     },
-    start_date: {required: helpers.withMessage("El campo inicio de fecha es obligatorio",required),
-    },
-    end_date: {
-      required: helpers.withMessage("El campo fin de fecha es obligatorio", required),
-    },
-    price: {
-      required: helpers.withMessage("El campo precio es obligatorio", required),
-    },
-    schedule_id: {
-      required: helpers.withMessage("El campo calendario es obligatorio", required),
+    desc_location: {
+      required: helpers.withMessage(
+        "La descripción de la sala es obligatoria",
+        required
+      ),
     },
   };
 });
@@ -66,14 +51,11 @@ const submitForm = async () => {
 
 const sendData = async () => {
   const formData = new FormData();
-  formData.append("room_id", state.room_id);
-  formData.append("movie_id", state.movie_id);
-  formData.append("start_date", state.start_date);
-  formData.append("end_date", state.end_date);
-  formData.append("price", state.price);
-  formData.append("schedule_id", state.schedule_id);
+  formData.append("name", state.name);
+  formData.append("capacity", state.capacity);
+  formData.append("desc_location", state.desc_location);
 
-  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/billboard`;
+  const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/room`;
   await fetch(urlDB, {
     method: "POST",
     body: formData,
@@ -81,7 +63,6 @@ const sendData = async () => {
     .then((response) => response)
     .then((data) => {
       console.log(data);
-      clear();
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -95,31 +76,12 @@ const sendData = async () => {
   );
 };
 
-const getMovie = () => {
-  const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/movie";
-  fetch(urlData)
-    .then((resp) => resp.json())
-    .then((data) => (movie.value = data));
-    console.log(movie.value)
-};
-
-const getRoom = () => {
+const getSalas = () => {
   const urlData =
     "https://cinema-production-cb13.up.railway.app/api/v1/room";
   fetch(urlData)
     .then((resp) => resp.json())
-    .then((data) => (room.value = data));
-    console.log(room.value)
-};
-
-
-const getsChedule = () => {
-  const urlData =
-    "https://cinema-production-cb13.up.railway.app/api/v1/schedule";
-  fetch(urlData)
-    .then((resp) => resp.json())
-    .then((data) => (schedule.value = data));
-    console.log(schedule.value)
+    .then((data) => (salas.value = data));
 };
 
 const message = (position, title, text, time) => {
@@ -140,148 +102,57 @@ const message1 = (text) => {
     text: text,
   });
 };
-
-// const sendDataBillboard = async() => {
-//   console.log("entro")
-//   console.log(state.billboard_id)
-//   const urlData1 =
-//     `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${state.billboard_id}`;
-//     await fetch(urlData1)
-//     .then((resp) => resp.json())
-//     .then((data) => (billboardItem.value = data));
-//      console.log(billboardItem.value)
-//      console.log(billboardItem.value.price)
-//      multplication();
-// };
-
-// const multplication = () =>{
-//   state.total= (state.amount*billboardItem.value.price)
-// }
-
-onMounted(() => {
-  getMovie();
-  getRoom();
-  getsChedule();
-});
 </script>
 <template>
   <div class="container my-5">
     <div class="row d-flex justify-content-center mt-5">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        
         <div class="container-form py-3 px-2">
-          <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar cartelera</h2>
+          <h2 class="text-center mb-3 mt-2 h2 text-white">
+            Registrar salas
+          </h2>
           <div class="division">
             <hr class="line" />
           </div>
           <form @submit.prevent="submitForm" class="form">
             <div class="form-group">
-              <select
-                id="disabledSelect"
-                class="form-select"
-                v-model="state.room_id"
-                
-              >
-                <option value="" selected disabled>Seleccione sala</option>
-                <option
-                  v-for="(item, i) in room"
-                  :value="item.id"
-                  v-text="item.name"
-                  :key="i"
-                ></option>
-              </select>
-              <span
-                v-for="error in $v.room_id.$errors"
-                .key="error.$uid"
-                style="color: FireBrick"
-                >{{ error.$message }}</span
-              >
-            </div>
-
-            <div class="form-group">
-              <select
-                id="disabledSelect"
-                class="form-select"
-                v-model="state.movie_id"
-                
-              >
-                <option value="" selected disabled>Seleccione pelicula</option>
-                <option
-                  v-for="(item, i) in movie"
-                  :value="item.id"
-                  v-text="item.name"
-                  :key="i"
-                ></option>
-              </select>
-              <span
-                v-for="error in $v.movie_id.$errors"
-                .key="error.$uid"
-                style="color: FireBrick"
-                >{{ error.$message }}</span
-              >
-            </div>
-
-            <div class="form-group">
               <input
-                type="date"
+                type="text"
                 class="form-control"
-                placeholder="Fecha inicial"
-                v-model="state.start_date"
+                placeholder="Nombre"
+                v-model="state.name"
               />
               <span
-                v-for="error in $v.start_date.$errors"
+                v-for="error in $v.name.$errors"
                 .key="error.$uid"
                 style="color: FireBrick"
                 >{{ error.$message }}</span
               >
             </div>
-
-            <div class="form-group">
-              <input
-                type="date"
-                class="form-control"
-                placeholder="Fecha final"
-                v-model="state.end_date"
-              />
-              <span
-                v-for="error in $v.end_date.$errors"
-                .key="error.$uid"
-                style="color: FireBrick"
-                >{{ error.$message }}</span
-              >
-            </div>
-
             <div class="form-group">
               <input
                 type="number"
                 class="form-control"
-                placeholder="Precio"
-                v-model="state.price"
+                placeholder="Capacidad "
+                v-model.number="state.capacity"
               />
               <span
-                v-for="error in $v.price.$errors"
+                v-for="error in $v.capacity.$errors"
                 .key="error.$uid"
                 style="color: FireBrick"
                 >{{ error.$message }}</span
               >
             </div>
-
             <div class="form-group">
-              <select
-                id="disabledSelect"
-                class="form-select"
-                v-model="state.schedule_id"
-                
-              >
-                <option value="" selected disabled>Seleccione horario</option>
-                <option
-                  v-for="(item, i) in schedule"
-                  :value="item.id"
-                  v-text="item.id"
-                  :key="i"
-                ></option>
-              </select>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Descripción"
+                v-model="state.desc_location"
+              />
               <span
-                v-for="error in $v.schedule_id.$errors"
+                v-for="error in $v.desc_location.$errors"
                 .key="error.$uid"
                 style="color: FireBrick"
                 >{{ error.$message }}</span
@@ -289,7 +160,10 @@ onMounted(() => {
             </div>
 
             <div class="form-group buttons mt-3">
-              <button type="submit" class="btn btn-block btn-success btn-lg">
+              <button
+                type="submit"
+                class="btn btn-block btn-success btn-lg"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -328,6 +202,7 @@ onMounted(() => {
             </div>
           </form>
         </div>
+      
       </div>
     </div>
   </div>

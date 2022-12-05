@@ -114,6 +114,8 @@ const clear = () => {
   formMovie.value.synopsis ="";
   formMovie.value.age_range = "";
 }
+
+
 </script>
 <template>
 <div class="container my-5">
