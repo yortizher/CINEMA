@@ -8,7 +8,8 @@ export const useRoomStore = defineStore('room', () => {
     const dataPineaRoom = ref([])
     const dataPineaChair = ref([])
     const band = ref(false)
-
+    const idRoom = ref("")
+    const idBillboard = ref("")
 
 
     //   const doubleCount = computed(() => count.value * 2)
@@ -27,6 +28,8 @@ export const useRoomStore = defineStore('room', () => {
         dataPineaRoom,
         dataPineaChair,
         band,
+        idRoom,
+        idBillboard,
         
 
 

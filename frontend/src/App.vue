@@ -6,11 +6,12 @@ import RoomVue from './components/room/Room.vue';
 import ChairViewVue from './components/room/ChairView.vue';
 import SellVue from './components/sell/Sell.vue';
 import CreateRoom from "./components/room/CreateRoom.vue"
-
+import EditRoomVue from './components/room/EditRoom.vue';
 
 </script>
 
 <template>
+  <!-- <EditRoomVue/> -->
   <!-- <SellVue/>  -->
   <!-- <CreateRoom/> -->
 
