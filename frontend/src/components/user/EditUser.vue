@@ -10,7 +10,7 @@ const user_id = ref(params.id)
 console.log("user_id ",user_id.value)
 
 const filterUser = ref([]);
-
+const user = ref([])
 const formUser = ref({
   name: "",
   up_name: "",
@@ -26,8 +26,9 @@ const getUser = () => {
    const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/user"
    fetch(urlData)
    .then(resp => resp.json())
-   .then(data => filterUser.value = data )
-   console.log(filterUser.value )
+   .then(data => user.value = data )
+  //  .then(data => filterUser.value = data )
+   console.log(user)
 }
 
 onMounted(()=> {
@@ -158,27 +159,27 @@ const clear = () => {
 				  </div>
 				  <form class="form">
 					  <div class="form-group">
-						  <input type="text" class="form-control" :placeholder="formUser.name" v-model="formUser.up_name">
+						  <input type="text" class="form-control" :placeholder="formUser.name" v-model="user.name">
 						  <!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					   <div class="form-group">
-						  <input type="text" class="form-control" :placeholder="formUser.lastname" v-model="formUser.up_lastname">	
+						  <input type="text" class="form-control" :placeholder="formUser.lastname" v-model="user.lastname">	
 						  <!-- <span v-for="error in v$.lastname.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="text" class="form-control" :placeholder="formUser.cc" v-model="formUser.up_cc">
+						  <input type="text" class="form-control" :placeholder="formUser.cc" v-model="user.cc">
 						  <!-- <span v-for="error in v$.cc.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="text" class="form-control" :placeholder="formUser.address" v-model="formUser.up_address">
+						  <input type="text" class="form-control" :placeholder="formUser.address" v-model="user.address">
 						  <!-- <span v-for="error in v$.address.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					   <div class="form-group">
-						  <input type="text" class="form-control" :placeholder="formUser.phone" v-model="formUser.up_phone">
+						  <input type="text" class="form-control" :placeholder="formUser.phone" v-model="user.phone">
 						  <!-- <span v-for="error in v$.phone.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="email" class="form-control" :placeholder="formUser.email" v-model="formUser.up_email">
+						  <input type="email" class="form-control" :placeholder="formUser.email" v-model="user.email">
 						  <!-- <span v-for="error in v$.email.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 						<div class="form-group buttons mt-3">

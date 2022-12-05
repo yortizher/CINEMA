@@ -140,25 +140,25 @@ const clear = () => {
 				<form class="form">
 					<div class="form-group">
     					<input type="text" class="form-control" :placeholder="filterMovies.name" v-model="formMovie.name">
-						<span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
+						<!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
  					<div class="form-group">
     					<select id="disabledSelect" class="form-select" v-model="formMovie.category">
                			 <option v-for="(item,i) in categories" :value="item.id" v-text="item.name" :key="i"></option>
             			</select>
-						<span v-for="error in v$.category.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
+						<!-- <span v-for="error in v$.category.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
 					<div class="form-group">
     					<input type="text" class="form-control" :placeholder="filterMovies.duration" v-model="formMovie.duration">
-						<span v-for="error in v$.duration.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
+						<!-- <span v-for="error in v$.duration.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
 					<div class="form-group">
     					<input type="text" class="form-control" :placeholder="filterMovies.synopsis" v-model="formMovie.synopsis">
-						<span v-for="error in v$.synopsis.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
+						<!-- <span v-for="error in v$.synopsis.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
  					<div class="form-group">
     					<input type="text" class="form-control" :placeholder="filterMovies.age_range" v-model="formMovie.age_range">
-						<span v-for="error in v$.age_range.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
+						<!-- <span v-for="error in v$.age_range.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
 					<!-- <div class="form-group">
             		<input type="file" @change="getImage" class="form-control" />
