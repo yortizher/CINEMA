@@ -251,7 +251,7 @@ onMounted(() => {
                 </svg>
                 Guardar
               </button>
-              <button type="submit" class="btn btn-block btn-primary btn-lg">
+              <RouterLink to="/consultSell" type="submit" class="btn btn-block btn-primary btn-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -268,7 +268,7 @@ onMounted(() => {
                   />
                 </svg>
                 Consultar
-              </button>
+              </RouterLink>
             </div>
           </form>
         </div>
