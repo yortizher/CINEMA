@@ -10,7 +10,6 @@
         <ul>
             <li><RouterLink to="/movie" class="tab" href="#">Peliculas</RouterLink></li>
             <li><RouterLink to="/room" class="tab" href="#">Salas</RouterLink></li>
-            <li><RouterLink to="/billboard" class="tab" href="#">Cartelera</RouterLink></li>
             <li><RouterLink to="/ticketing" class="tab" href="#">Ventas de Entradas</RouterLink></li>
         </ul>
    </nav>
