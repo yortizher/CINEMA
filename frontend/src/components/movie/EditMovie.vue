@@ -61,7 +61,7 @@ const v$ = useVuelidate(rules, formMovie)
 const submitForm = async () => {
   const result = await v$.value.$validate();
   if(result) {
-    // editMovie();
+    editMovie();
     clear();
   } else {
     messageError("Verifique que todos los campos este llenos");
@@ -139,26 +139,26 @@ const clear = () => {
 				</div>
 				<form class="form">
 					<div class="form-group">
-    					<input type="text" class="form-control" placeholder="Nombre">
-						<!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+    					<input type="text" class="form-control" :placeholder="filterMovies.name" v-model="formMovie.name">
+						<span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
   					</div>
  					<div class="form-group">
-    					<select id="disabledSelect" class="form-select" >
-               			 <!-- <option v-for="(item,i) in categories" :value="item.id" v-text="item.name" :key="i"></option> -->
+    					<select id="disabledSelect" class="form-select" v-model="formMovie.category">
+               			 <option v-for="(item,i) in categories" :value="item.id" v-text="item.name" :key="i"></option>
             			</select>
-						<!-- <span v-for="error in v$.category.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						<span v-for="error in v$.category.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
   					</div>
 					<div class="form-group">
-    					<input type="text" class="form-control" placeholder="Duración">
-						<!-- <span v-for="error in v$.duration.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+    					<input type="text" class="form-control" :placeholder="filterMovies.duration" v-model="formMovie.duration">
+						<span v-for="error in v$.duration.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
   					</div>
 					<div class="form-group">
-    					<input type="text" class="form-control" placeholder="Sinopsis">
-						<!-- <span v-for="error in v$.synopsis.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+    					<input type="text" class="form-control" :placeholder="filterMovies.synopsis" v-model="formMovie.synopsis">
+						<span v-for="error in v$.synopsis.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
   					</div>
  					<div class="form-group">
-    					<input type="text" class="form-control" placeholder="Rango de Edad">
-						<!-- <span v-for="error in v$.age_range.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+    					<input type="text" class="form-control" :placeholder="filterMovies.age_range" v-model="formMovie.age_range">
+						<span v-for="error in v$.age_range.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
   					</div>
 					<!-- <div class="form-group">
             		<input type="file" @change="getImage" class="form-control" />
@@ -183,7 +183,7 @@ const clear = () => {
 					</div>
 					</div> -->
   					<div class="form-group buttons mt-3">
-  						<button type="button" class="btn btn-block btn-success btn-lg mx-auto">
+  						<button type="submit"  class="btn btn-block btn-success btn-lg mx-auto">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
 								<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
 								<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>

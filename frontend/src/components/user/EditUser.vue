@@ -13,24 +13,41 @@ const filterUser = ref([]);
 
 const formUser = ref({
   name: "",
+  up_name: "",
   lastname: "",
-  cc: "",
-  address:"",
-  phone: "",
-  email: "",
+  up_lastname: "",
+  up_cc: "",
+  up_address:"",
+  up_phone: "",
+  up_email: "",
 }); 
 
 const getUser = () => {
-   const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/movie"
+   const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/user"
    fetch(urlData)
    .then(resp => resp.json())
    .then(data => filterUser.value = data )
-   console.log(filterUser )
+   console.log(filterUser.value )
 }
 
 onMounted(()=> {
 	getUser();
 });
+
+const filterSearch = computed(() => {
+	for (let x in filterUser.value.value) {
+		if(filterUser.value[x].id == user_id.value) {
+			formUser.value.id = filterUser.value[x].id,
+			formUser.value.name = filterUser.value[x].name
+      formUser.value.lastname = filterUser.value[x].lastname
+      formUser.value.cc	 = filterUser.value[x].cc	
+      formUser.value.address = filterUser.value[x].address	
+      formUser.value.phone	 = filterUser.value[x].phone	
+      formUser.value.email = filterUser.value[x].email
+		}
+	}
+});
+
 const rules = computed (() =>{
   return {  
     name: { 
@@ -60,7 +77,7 @@ const v$ = useVuelidate(rules, formUser)
 const submitForm = async () => {
   const result = await v$.value.$validate();
   if(result) {
-    // editUser();
+    editUser();
     clear();
   } else {
     messageError("Verifique que todos los campos este llenos");
@@ -85,6 +102,7 @@ const messageError = ( text) => {
     text: text,
   });
 };
+
 const editUser = async () => {
   const formData = new FormData();
   formData.append("name", formUser.value.name);
@@ -106,7 +124,7 @@ const editUser = async () => {
         message(
           "center",
           "Actualización completada",
-          "Se ha actualizado correctamente la categoria",
+          "Se ha actualizado correctamente el usuario",
           1500
         );
       })
@@ -127,9 +145,6 @@ const clear = () => {
   formUser.value.email = "";
 }
 
-
-
-
 </script>
 <template>
 	<div class="container my-5">
@@ -139,34 +154,35 @@ const clear = () => {
 				  <h2 class="text-center mb-3 mt-2 h2 text-white">Editar Cliente</h2>
 				  <div class="division">
 					  <hr class="line">
+            {{filterSearch}}
 				  </div>
 				  <form class="form">
 					  <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Nombre">
+						  <input type="text" class="form-control" :placeholder="formUser.name" v-model="formUser.up_name">
 						  <!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					   <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Apellido">	
+						  <input type="text" class="form-control" :placeholder="formUser.lastname" v-model="formUser.up_lastname">	
 						  <!-- <span v-for="error in v$.lastname.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Documento">
+						  <input type="text" class="form-control" :placeholder="formUser.cc" v-model="formUser.up_cc">
 						  <!-- <span v-for="error in v$.cc.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Dirección">
+						  <input type="text" class="form-control" :placeholder="formUser.address" v-model="formUser.up_address">
 						  <!-- <span v-for="error in v$.address.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					   <div class="form-group">
-						  <input type="text" class="form-control" placeholder="Teléfono">
+						  <input type="text" class="form-control" :placeholder="formUser.phone" v-model="formUser.up_phone">
 						  <!-- <span v-for="error in v$.phone.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 					  <div class="form-group">
-						  <input type="email" class="form-control" placeholder="Email">
+						  <input type="email" class="form-control" :placeholder="formUser.email" v-model="formUser.up_email">
 						  <!-- <span v-for="error in v$.email.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
 						</div>
 						<div class="form-group buttons mt-3">
-							<button type="button" class="btn btn-block btn-success btn-lg mx-auto">
+							<button type="submit" class="btn btn-block btn-success btn-lg mx-auto">
 							  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
 								  <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
 								  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>

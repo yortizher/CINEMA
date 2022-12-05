@@ -86,7 +86,7 @@ const clear = () => {
 				</div>
 				<form class="form">
 					<div class="form-group">
-    					<input type="text" class="form-control" placeholder="Hora de Inicio" v-model="formTime.start_time">
+    					<input type="time" class="form-control" placeholder="Hora de Inicio" v-model="formTime.start_time">
                         <span v-for="error in v$.start_time.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
   					</div>
   					<div class="form-group buttons mt-3">
