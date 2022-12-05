@@ -10,24 +10,24 @@ const { idBillboard } = storeToRefs(dataPinea);
 
 const router = useRouter();
 
-const salas = ref([]);
+const billboard = ref([]);
 
-const getSalas = () => {
+const getBillboard = () => {
   const urlData =
-    "https://cinema-production-cb13.up.railway.app/api/v1/room";
+    "https://cinema-production-cb13.up.railway.app/api/v1/billboard";
   fetch(urlData)
     .then((resp) => resp.json())
-    .then((data) => (salas.value = data));
+    .then((data) => (billboard.value = data));
 };
 
 onMounted(()=> {
-	getSalas();
+	getBillboard();
 });
 
  const editCategory = (id) => router.push(`/editBillboard/${id}`)
 
 const categoryDelete = (id) => {
-  const urlData = `https://cinema-production-cb13.up.railway.app/api/v1/room/${id}`;
+  const urlData = `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${id}`;
   fetch(urlData, {
     method: "DELETE",
   })
@@ -48,7 +48,6 @@ const categoryDelete = (id) => {
     1500
   );
 
-  idBillboard.value=id;
 
 };
 
@@ -63,6 +62,12 @@ const message = (position, title, text, time) => {
   });
 };
 
+const sendData =(data)=>{
+  
+  idBillboard.value=data;
+  
+}
+
 </script>
 <template>
 <div class="row d-flex justify-content-end container">
@@ -74,7 +79,7 @@ const message = (position, title, text, time) => {
             <div style="position: static;">
               <div>
                 <ul class=" list-group">
-                  <li class="list-group-item" v-for="item in salas" :key="item.id">
+                  <li class="list-group-item" v-for="item in billboard" :key="item.id">
                     <div class="todo-indicator bg-primary"></div>
                     <div class="widget-content p-0">
                       <div class="widget-content-wrapper">
@@ -83,7 +88,7 @@ const message = (position, title, text, time) => {
                         </div>
                         
                         <div class="widget-content-right">
-                          <button @click="editCategory(item.id)" class="border-0  btn btn-outline-success">
+                          <button @click="(editCategory(item.id),sendData(item.id))" class="border-0  btn btn-outline-success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                             </svg>
