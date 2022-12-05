@@ -12,6 +12,7 @@ const { idBillboard } = storeToRefs(dataPinea);
 const room = ref([]);
 const schedule = ref([]);
 const movie = ref([]);
+const billboard = ref([]);
 
 const state = reactive({
     room_id: "",
@@ -69,7 +70,7 @@ const submitForm = async () => {
   }
 };
 
-let URL = window.location;
+
 
 const sendData = async () => {
  
@@ -103,6 +104,23 @@ const sendData = async () => {
   );
   
 };
+
+
+const getBillboard = async() => {
+  const urlData =`https://cinema-production-cb13.up.railway.app/api/v1/billboard/${idBillboard.value}`;
+    await fetch(urlData)
+    .then((resp) => resp.json())
+    .then((data) => (billboard.value = data));
+    state.room_id = billboard.value.room_id;
+    state.movie_id = billboard.value.movie_id;
+    state.start_date = billboard.value.start_date;
+    state.end_date = billboard.value.end_date;
+    state.price = billboard.value.price;
+    state.schedule_id = billboard.value.schedule_id;
+
+   
+};
+
 
 const getMovie = () => {
   const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/movie";
@@ -150,27 +168,14 @@ const message1 = (text) => {
   });
 };
 
-// const sendDataBillboard = async() => {
-//   console.log("entro")
-//   console.log(state.billboard_id)
-//   const urlData1 =
-//     `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${state.billboard_id}`;
-//     await fetch(urlData1)
-//     .then((resp) => resp.json())
-//     .then((data) => (billboardItem.value = data));
-//      console.log(billboardItem.value)
-//      console.log(billboardItem.value.price)
-//      multplication();
-// };
 
-// const multplication = () =>{
-//   state.total= (state.amount*billboardItem.value.price)
-// }
 
 onMounted(() => {
+  getBillboard();
   getMovie();
   getRoom();
   getsChedule();
+
  
 });
 </script>
@@ -317,24 +322,6 @@ onMounted(() => {
                 </svg>
                 Guardar
               </button>
-              <RouterLink  to="/consultBillboard"  type="submit" class="btn btn-block btn-primary btn-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-eye"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
-                  />
-                  <path
-                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
-                  />
-                </svg>
-                Consultar
-              </RouterLink>
             </div>
           </form>
         </div>

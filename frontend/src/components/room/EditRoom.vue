@@ -5,12 +5,15 @@ import { required, helpers } from "@vuelidate/validators";
 
 import { useRoomStore } from "@/stores/room.js";
 import { storeToRefs } from "pinia";
+
 const dataPinea = useRoomStore(); //no olvidar los parentisis
 const { idRoom } = storeToRefs(dataPinea);
 
-
+console.log("😢",idRoom.value)
 const rsp = ref([]);
-const salas = ref([]);
+const sala = ref([]);
+
+
 
 const state = reactive({
   name: "",
@@ -55,6 +58,26 @@ const submitForm = async () => {
   }
 };
 
+
+const getSalas = async() => {
+  const urlData =
+    `https://cinema-production-cb13.up.railway.app/api/v1/room/${idRoom.value}`;
+    await fetch(urlData)
+    .then((resp) => resp.json())
+    .then((data) => (sala.value = data));
+    state.name = sala.value.name;
+    state.capacity = sala.value.capacity;
+    state.desc_location = sala.value.desc_location;
+    
+    console.log("url",urlData)
+    console.log("yeni",sala.value.name)
+   
+};
+
+onMounted(()=> {
+	getSalas();
+});
+
 const sendData = async () => {
   const formData = new FormData();
   formData.append("name", state.name);
@@ -69,13 +92,13 @@ const sendData = async () => {
     .then((response) => response)
     .then((data) => {
       console.log(data);
-
+     
       message(
-    "center",
-    "Actualización completada",
-    "Se ha actualizado correctamente el registro",
-    1500
-  );
+        "center",
+        "Actualización completada",
+        "Se ha actualizado correctamente el registro",
+        1500
+      );
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -84,13 +107,7 @@ const sendData = async () => {
  
 };
 
-// const getSalas = () => {
-//   const urlData =
-//     "https://cinema-production-cb13.up.railway.app/api/v1/room";
-//   fetch(urlData)
-//     .then((resp) => resp.json())
-//     .then((data) => (salas.value = data));
-// };
+
 
 const message = (position, title, text, time) => {
   Swal.fire({
