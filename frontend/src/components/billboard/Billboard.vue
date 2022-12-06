@@ -150,8 +150,8 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="container ">
-    <div class="row d-flex justify-content-center mt-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center container-main">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="container-form  ">
           <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar cartelera yeniferrrr</h2>
@@ -318,8 +318,21 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
+<<<<<<< HEAD
 
 
+=======
+.container-main {
+	margin: 9rem auto;
+}
+.container-form {
+  border: none;
+  border-top: 5px solid var(--medium_purple);
+  background: var(--space_cadet);
+  color: var(--purple_navy);
+  margin-top: 8%;
+}
+>>>>>>> 32befd1caff71ef083a65082b965117d99c0d847
 
 .division {
   float: none;
@@ -348,6 +361,7 @@ onMounted(() => {
   letter-spacing: 1px;
   color: var(--light_gray);
 }
+
 .form-select:focus,
 .form-control:focus {
   border: 1px solid var(--medium_purple);

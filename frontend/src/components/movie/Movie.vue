@@ -147,8 +147,8 @@ const clear = () => {
 }
 </script>
 <template>
-<div class="container container-main">
-	<div class="row d-flex justify-content-center mt-5">
+<div class="container">
+	<div class="row d-flex justify-content-center container-main">
 		<div class="col-12 col-md-8 col-lg-6 col-xl-5">
 			<div class="container-form py-3 px-2">
 				<h2 class="text-center mb-3 mt-2 h2 text-white">Registrar Película</h2>
@@ -239,7 +239,7 @@ const clear = () => {
 </template>
 <style scoped>
 .container-main {
-	margin-top: 5rem;
+	margin: 5rem auto;
 }
 .fancy-file{
 	position: absolute;
