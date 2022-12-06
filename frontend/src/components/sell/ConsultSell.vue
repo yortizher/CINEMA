@@ -54,8 +54,8 @@ const message = (position, title, text, time) => {
 
 </script>
 <template>
-<div class="row d-flex justify-content-end container">
-    <div class="col-md-8">
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8 container-main">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
           <h3 class="card-header-title font-size-lg text-capitalize text-secondary text-light text-center">Registro de ventas</h3>
@@ -89,7 +89,10 @@ const message = (position, title, text, time) => {
 </template>
 <style scoped>
 
-
+.container-main {
+	margin: 9rem auto;
+  width: 90%;
+}
 
 .card-header {
   background: var(--purple_navy);
@@ -132,5 +135,60 @@ const message = (position, title, text, time) => {
     color: var(--white);
     background-color: #3ac47d;
     border-color: #3ac47d;
+}
+@media(min-width: 450px){
+.container-main {
+  width: 85%;
+}
+.row-item {
+  flex-direction: row;
+  width: 450px;  
+}
+}
+
+@media(min-width: 470px){
+  
+  .row-item {
+  flex-direction: column;
+  width: 250px;  
+}
+
+}
+@media(min-width: 481px){
+  .row-item {
+  flex-direction: column;
+  width: 310px;  
+}
+
+}
+@media(min-width: 496px){
+  
+  .row-item {
+  width: 324px;  
+}
+
+}
+@media (min-width: 768px) {
+  .container-main {
+    width: 75%;
+  }
+  .row-item {
+    flex-direction: row;
+    width: 528px;  
+}
+}
+@media (min-width: 1023px) {
+  .row-item {
+    width: 730px;  
+}
+}
+
+@media (min-width: 1200px) {
+  .container-main {
+    width: 60%;
+  }
+  .row-item {
+    width: 580px;  
+}
 }
 </style>
