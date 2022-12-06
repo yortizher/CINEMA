@@ -268,7 +268,7 @@ const message1 = (text) => {
 }
 .buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .bn {
   text-decoration: underline;
