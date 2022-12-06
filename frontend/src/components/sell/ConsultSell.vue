@@ -54,25 +54,27 @@ const message = (position, title, text, time) => {
 
 </script>
 <template>
-<div class="row d-flex justify-content-end container container-main">
+<div class="row d-flex justify-content-end container">
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
-          <h3 class="card-header-title font-size-lg text-capitalize text-secondary text-light text-center">Ventas</h3>
+          <h3 class="card-header-title font-size-lg text-capitalize text-secondary text-light text-center">Registro de ventas</h3>
          </div>
             <div style="position: static;">
               <div>
                 <ul class=" list-group">
                   <li class="list-group-item" v-for="item in sell" :key="item.id">
                     <div class="todo-indicator bg-primary"></div>
-                    <div class="widget-content p-0">
+                    <div class="widget-content ">
                       <div class="widget-content-wrapper">
 
-                        <div class="">
-                          <p>  Id : {{item.id}}</p>
-                          <p>  Cartelera : {{item.billboard_id}}</p>
-                          <p>Cantidad boletos : {{item.amount}}</p>
-                          <p>Total : {{item.total}}</p>
+                        <div class="flex2">
+                          <p class="ms-2 mt-2"><strong >Id</strong> <span class="widget-subheading">: {{item.id}}</span> </p>
+                          <p class="ms-2 mt-2"><strong >Cartelera</strong> <span class="widget-subheading">: {{item.billboard_id}}</span> </p>
+                          <p class="ms-2 mt-2"><strong >Cantidad boletos</strong> <span class="widget-subheading">: {{item.amount}}</span> </p>
+                          <p class="ms-2 mt-2"><strong >Total</strong> <span class="widget-subheading">: {{item.total}}</span> </p>
+
+
                         </div>
                         
                       </div>
@@ -86,6 +88,8 @@ const message = (position, title, text, time) => {
 </div>
 </template>
 <style scoped>
+
+
 
 .card-header {
   background: var(--purple_navy);

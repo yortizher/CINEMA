@@ -8,7 +8,7 @@ const router = useRouter();
 const movieSelected = ref({});
 const movies = ref([]);
 
-const getMovies = () => {
+const getMovies =  () => {
    const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/movie"
    fetch(urlData)
    .then(resp => resp.json())
