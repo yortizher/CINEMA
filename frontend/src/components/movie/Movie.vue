@@ -245,32 +245,33 @@ const clear = () => {
 	position: absolute;
 	top: 2px;
 	z-index: 1;
-	width: 100%;
+	width: 70%;
 	height: 100%;
 	opacity: 0;
 }
 .fancy-file + label {
 	display: flex;
+	flex-direction: column;
 }
 .fancy-file__fancy-file-name,
 .fancy-file__fancy-file-button{
-	padding: 5px 8px;
-	
+	padding: 2px 5px;
+	white-space: nowrap;
 }
 .fancy-file__fancy-file-name--success{
-	padding: 5px 30px;
+	padding: 5px 10px;
 }
 .fancy-file__fancy-file-name {
   background: var(--space_cadet);
   border: 1px solid var(--purple_navy);
-  border-radius: 0 4px  4px 0;
+  border-radius:  0 0 4px 4px;
   white-space: nowrap;
 }
 .fancy-file__fancy-file-button{
 	background-color:  var(--purple_navy);
 	border: 1px solid  var(--purple_navy);
+	border-radius: 4px 4px 0  0 ;
 	color: white;
-	border-radius: 4px 0 0 4px;
     white-space: nowrap;
 	position: relative;
 }
@@ -303,7 +304,7 @@ const clear = () => {
 }
 
 .img {
-    width: 50%;
+    width: 100%;
     height: 10rem;
     object-fit: cover;
     transition: all .3s ease-in-out;    
@@ -352,24 +353,56 @@ const clear = () => {
 
 @media(min-width: 450px){
 	.division .line{
-		width: 50%;
+		width: 90%;
 	}
 	.buttons {
     flex-direction: row;
 }
 }
+@media(min-width: 481px){
+
+}
+@media (min-width: 496px) {
+
+}
 
 
-@media(min-width: 767px){
+@media(min-width: 768px){
 	.bn{
 		text-align: right;
 	}
 }
-@media(max-width: 767px){
+/* @media(max-width: 767px){
 	.bn{
 		text-align: center;
 		align-items: center;
 	}
-}
+} */
+@media (min-width: 1023px) {
 
+}
+@media (min-width: 1200px) {
+.fancy-file + label {
+	display: flex;
+	flex-direction: row;
+}
+.fancy-file__fancy-file-name {
+  border-radius: 0 4px  4px 0;
+}
+.fancy-file__fancy-file-button{
+	border-radius: 4px 0 0 4px;
+}
+.img {
+    width: 50%;
+    height: 10rem;
+}
+.fancy-file__fancy-file-name,
+.fancy-file__fancy-file-button{
+	padding: 5px 5px;
+	
+}
+.fancy-file__fancy-file-name--success{
+	padding: 5px 29px;
+}
+}
 </style>
