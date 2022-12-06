@@ -86,9 +86,7 @@ const message = (position, title, text, time) => {
 </div>
 </template>
 <style scoped>
-.container-main {
-	margin-top: 5rem;
-}
+
 .card-header {
   background: var(--purple_navy);
 }
@@ -99,7 +97,7 @@ const message = (position, title, text, time) => {
   background-color: var(--medium_purple) !important;
 }
 .container{
-    margin-top:100px;
+    margin-top: 10%;
 }
 
 .widget-subheading{

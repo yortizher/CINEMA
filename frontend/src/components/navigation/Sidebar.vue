@@ -10,7 +10,7 @@
         <h3>Administración</h3>
     </div>
     <ul class="sidebarMenuInner components">
-        <li class="active"><RouterLink to="/user" href="#">Clientes</RouterLink></li>
+        <li ><RouterLink to="/user" href="#">Clientes</RouterLink></li>
         <li><RouterLink to="/schedule" href="#">Horarios</RouterLink></li>
         <li><RouterLink to="/category" href="#">Categorías</RouterLink></li>
         <li><RouterLink to="/movie" href="#">Películas</RouterLink></li>
@@ -18,6 +18,7 @@
         <li><RouterLink to="/createRoom" href="#">Sala</RouterLink></li>
     </ul>
   </div>
+  
 </template>
 <style scoped>
 
@@ -110,5 +111,8 @@ a:focus {
     left: 15px;
     height: 22px;
     width: 22px;
+}
+.router-link-exact-active {
+  background-color: var(--purple_navy);;
 }
 </style>
