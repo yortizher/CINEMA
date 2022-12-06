@@ -107,7 +107,7 @@ export const editResponse = async (req,res) => {
             editRegister.img_url = uploadResponse.secure_url
             await editRegister.save()
             
-            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister}) 
+            res.status(200).json({message: `Register with id:${id} was succesfully edited.`, editRegister}) 
         }
       
       } catch (err) {
