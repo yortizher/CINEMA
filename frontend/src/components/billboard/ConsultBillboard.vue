@@ -70,9 +70,9 @@ const sendData =(data)=>{
 
 </script>
 <template>
-<div class="row d-flex justify-content-end container">
-    <div class="col-md-8">
-      <div class="card-hover-shadow-2x card">
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8 container-main">
+      <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
           <h3 class="card-header-title font-size-lg text-capitalize text-secondary text-light text-center">Carteleras</h3>
          </div>
@@ -114,6 +114,10 @@ const sendData =(data)=>{
 </div>
 </template>
 <style scoped>
+.container-main {
+	margin: 9rem auto;
+  width: 90%;
+}
 .widget-subheading{
     color: var(--medium_gray);
     font-size: 1rem;
@@ -130,9 +134,9 @@ const sendData =(data)=>{
 .bg-primary {
   background-color: var(--medium_purple) !important;
 }
-.container{
+/* .container-main{
     margin-top:10%;
-}
+} */
 
 .widget-subheading{
     color: var(--medium_gray);
@@ -211,5 +215,60 @@ const sendData =(data)=>{
     color: var(--white);
     background-color: #3ac47d;
     border-color: #3ac47d;
+}
+@media(min-width: 450px){
+.container-main {
+  width: 85%;
+}
+.row-item {
+  flex-direction: row;
+  width: 450px;  
+}
+}
+
+@media(min-width: 470px){
+  
+  .row-item {
+  flex-direction: column;
+  width: 250px;  
+}
+
+}
+@media(min-width: 481px){
+  .row-item {
+  flex-direction: column;
+  width: 310px;  
+}
+
+}
+@media(min-width: 496px){
+  
+  .row-item {
+  width: 324px;  
+}
+
+}
+@media (min-width: 768px) {
+  .container-main {
+    width: 75%;
+  }
+  .row-item {
+    flex-direction: row;
+    width: 528px;  
+}
+}
+@media (min-width: 1023px) {
+  .row-item {
+    width: 730px;  
+}
+}
+
+@media (min-width: 1200px) {
+  .container-main {
+    width: 60%;
+  }
+  .row-item {
+    width: 580px;  
+}
 }
 </style>

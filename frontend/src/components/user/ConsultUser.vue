@@ -105,12 +105,10 @@ const message = (position, title, text, time) => {
 </template>
 <style scoped>
 .container-main {
-	margin: 19rem auto;
+	margin: 5rem auto;
   width: 90%;
 }
-.container-main {
-	margin-top: 5rem;
-}
+
 .card-header {
   background: var(--purple_navy);
 }
@@ -163,13 +161,64 @@ const message = (position, title, text, time) => {
     border-color: #3ac47d;
 }
 @media(min-width: 450px){
+  .container-main {
+  width: 60%;
+}
   .row-item {
   flex-direction: row;
   width: 450px;  
 }
 
-.container-main {
-  width: 60%;
+
+}
+@media(min-width: 470px){
+  .container-main {
+    width: 85%;
+  }
+  .row-item {
+  flex-direction: column;
+  width: 250px;  
+}
+
+}
+@media(min-width: 481px){
+  .container-main {
+    width: 90%;
+  }
+  .row-item {
+  flex-direction: column;
+  width: 310px;  
+}
+
+}
+@media(min-width: 496px){
+  
+  .row-item {
+  width: 324px;  
+}
+
+}
+@media (min-width: 768px) {
+  .container-main {
+    width: 85%;
+  }
+  .row-item {
+    flex-direction: row;
+    width: 528px;  
+}
+}
+@media (min-width: 1023px) {
+  .row-item {
+    width: 730px;  
+}
+}
+
+@media (min-width: 1200px) {
+  .container-main {
+    width: 60%;
+  }
+  .row-item {
+    width: 580px;  
 }
 }
 </style>
