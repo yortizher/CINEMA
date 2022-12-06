@@ -53,8 +53,8 @@ const message = (position, title, text, time) => {
 };
 </script>
 <template>
-<div class="row d-flex justify-content-end container container-main">
-    <div class="col-md-8">
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8 container-main">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
           <h3 class="card-header-title font-size-lg text-capitalize text-light text-center">Películas</h3>
@@ -106,7 +106,8 @@ const message = (position, title, text, time) => {
 </template>
 <style scoped>
 .container-main {
-	margin-top: 5rem;
+	margin: 9rem auto;
+  width: 60%;
 }
 .container{
     margin-top:100px;

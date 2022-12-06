@@ -165,8 +165,8 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="container container-main">
-    <div class="row d-flex justify-content-center mt-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center container-main">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="container-form py-3 px-2">
           <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar cartelera</h2>
@@ -334,7 +334,7 @@ onMounted(() => {
 </template>
 <style scoped>
 .container-main {
-	margin-top: 5rem;
+	margin: 9rem auto;
 }
 .container-form {
   border: none;
@@ -371,6 +371,7 @@ onMounted(() => {
   letter-spacing: 1px;
   color: var(--light_gray);
 }
+
 .form-select:focus,
 .form-control:focus {
   border: 1px solid var(--medium_purple);
