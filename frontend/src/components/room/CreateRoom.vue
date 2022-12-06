@@ -260,6 +260,7 @@ const message1 = (text) => {
 }
 .buttons {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 .bn {
@@ -279,7 +280,12 @@ const message1 = (text) => {
   box-shadow: none;
   border: none;
 }
+@media(min-width: 450px){
+	.division .line{
+		width: 85%;
+	}
 
+}
 @media (min-width: 767px) {
   .bn {
     text-align: right;
@@ -291,9 +297,5 @@ const message1 = (text) => {
     align-items: center;
   }
 }
-@media (max-width: 450px) {
-  .division .line {
-    width: 50%;
-  }
-}
+
 </style>

@@ -108,7 +108,7 @@ const message = (position, title, text, time) => {
 <style scoped>
 .container-main {
 	margin: 9rem auto;
-  width: 60%;
+  width: 90%;
 }
 .container{
     margin-top:100px;
@@ -124,22 +124,25 @@ const message = (position, title, text, time) => {
 }
 .items {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .row-item--left,
 .row-item--right{
   display: flex;
-  flex-direction: column;
-  width: 25%;  
+  flex-direction: row;
+  width: 50%;  
 }
 .row-item--right {
-  width: 80%;
-  margin-left: 1rem;
+  width: 95%;
+  margin: .8rem 0 0 1rem;
 }
 .widget-subheading{
     color: var(--medium_gray);
     font-size: 0.9rem;
+}
+.sub-items {
+  margin: 0 0 0 5%;
 }
 .todo-indicator {
     position: absolute;
@@ -171,10 +174,96 @@ const message = (position, title, text, time) => {
     border-color: #3ac47d;
 }
 .img {
-    width: 95%;
-    height: 5rem;
+    width: 100%;
+    height:8rem;
     object-fit: cover;
     transition: all .3s ease-in-out;    
     transform: scale(1);
+}
+@media(min-width: 481px){
+  .container-main {
+    width: 60%;
+  }
+  .items {
+  display: flex;
+  flex-direction: row;
+}
+.img {
+    width: 95%;
+    height: 5rem;
+}
+
+.row-item--left,
+.row-item--right{
+  flex-direction: column;
+  width: 25%; 
+ 
+}
+
+.row-item--right {
+  width: 80%;
+  margin-left: 1rem;
+}
+}
+@media (min-width: 496px) {
+  .container-main {
+    width: 90%;
+  }
+  .items {
+  display: flex;
+  flex-direction: column;
+}
+.img {
+    width: 180%;
+    height: 6rem;
+}
+
+.row-item--left,
+.row-item--right{
+  flex-direction: row;
+  width: 25%; 
+ 
+}
+.sub-items{
+  margin: 0 0 0 1rem; 
+}
+.row-item--right {
+  width: 80%;
+  margin-left: 1rem;
+}
+}
+@media (min-width: 768px) {
+  .row-item--right {
+  width: 90%;
+ 
+}
+}
+@media (min-width: 1023px) {
+
+.container-main {
+    width: 80%;
+  }
+  .items {
+  display: flex;
+  flex-direction: row;
+}
+.img {
+    width: 80%;
+    height: 12rem;
+}
+
+.row-item--left,
+.row-item--right{
+  display: flex;
+  flex-direction: column;
+  width: 50%;  
+}
+}
+@media (min-width: 1200px) {
+
+.container-main {
+    width: 60%;
+  }
+
 }
 </style>

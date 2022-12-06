@@ -152,8 +152,8 @@ const editMovie = async () => {
 
 </script>
 <template>
-<div class="container container-main">
-	<div class="row d-flex justify-content-center mt-5">
+<div class="container">
+	<div class="row d-flex justify-content-center container-main">
 		<div class="col-12 col-md-8 col-lg-6 col-xl-5">
 			<div class="container-form py-3 px-2">
 				<h2 class="text-center mb-3 mt-2 h2 text-white">Editar Película</h2>
@@ -333,7 +333,19 @@ const editMovie = async () => {
 	box-shadow: none;
 	border: none;
 } 
+@media(max-width: 450px){
+	.division .line{
+		width: 50%;
+	}
+	.img {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+    transition: all .3s ease-in-out;    
+    transform: scale(1);
+}
 
+}
 
 @media(min-width: 767px){
 	.bn{
@@ -346,9 +358,5 @@ const editMovie = async () => {
 		align-items: center;
 	}
 }
-@media(max-width: 450px){
-	.division .line{
-		width: 50%;
-	}
-}
+
 </style>

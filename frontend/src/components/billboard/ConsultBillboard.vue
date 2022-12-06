@@ -70,7 +70,7 @@ const sendData =(data)=>{
 
 </script>
 <template>
-<div class="row d-flex justify-content-end container ">
+<div class="row d-flex justify-content-end container">
     <div class="col-md-8">
       <div class="card-hover-shadow-2x card">
         <div class="card-header">

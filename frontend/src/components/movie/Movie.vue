@@ -329,6 +329,7 @@ const clear = () => {
 }
 .buttons {
     display: flex;
+	flex-direction: column;
     justify-content:space-between;
 }
 .bn{
@@ -349,6 +350,14 @@ const clear = () => {
 	border: none;
 } 
 
+@media(min-width: 450px){
+	.division .line{
+		width: 50%;
+	}
+	.buttons {
+    flex-direction: row;
+}
+}
 
 
 @media(min-width: 767px){
@@ -362,9 +371,5 @@ const clear = () => {
 		align-items: center;
 	}
 }
-@media(max-width: 450px){
-	.division .line{
-		width: 50%;
-	}
-}
+
 </style>

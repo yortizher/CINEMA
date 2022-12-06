@@ -118,8 +118,8 @@ const editUser = async () => {
 
 </script>
 <template>
-	<div class="container container-main">
-	  <div class="row d-flex justify-content-center mt-5">
+	<div class="container">
+	  <div class="row d-flex justify-content-center container-main">
 		  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
 			  <div class="container-form py-3 px-2">
 				  <h2 class="text-center mb-3 mt-2 h2 text-white">Editar Cliente</h2>
@@ -167,7 +167,7 @@ const editUser = async () => {
   </div>
   </template>
   <style scoped>
-  .container-main {
+.container-main {
 	margin-top: 5rem;
 }
   .container-form{
