@@ -16,7 +16,7 @@ https://github.com/yortizher/CINEMA.git
 ```
 
 ## Link Despliegue
-
+https://darling-cheesecake-60c8c4.netlify.app/
 
 ## Tecnologias usadas
 `VUE/ PINIA / VUE-ROUTER / VUELIDATE / BOOTSTRAP/ CSS / NODEJS / EXPRESS / MYSQL/ SEQUELIZE / MULTER / NODEMAILER`
