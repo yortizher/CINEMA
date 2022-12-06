@@ -13,7 +13,7 @@ defineProps(['movie']);
         <div class="modal-body text-start">
         <div class="contant">
           <div class="container-legth">
-            <p class="text-secondary"><img :src="movie.img_url"  class="img-fluid" alt="foto de película"></p>
+            <p class="text-secondary"><img :src="movie.img_url"  class=" img img-fluid" alt="foto de película"></p>
           </div>
           <div class="container-right">
             <p class="text-secondary"><span class="h5 text-secondary">Duración:</span> {{movie.duration}}</p>  
@@ -33,6 +33,7 @@ defineProps(['movie']);
 <style scoped>
 .contant {
   display: flex;
+  width: 100%;
 }
 .container-legth{
   width: 40%;
@@ -40,6 +41,13 @@ defineProps(['movie']);
 .container-right{
   width: 60%;
   margin-left: 1rem;
+}
+.img{
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
+  transition: all .3s ease-in-out;    
+  transform: scale(1);
 }
 .img-fluid {
     max-width: 100%;

@@ -232,7 +232,7 @@ const clear = () => {
 } 
 @media(min-width: 450px){
 	.division .line{
-		width: 50%;
+		width: 90%;
 	}
 	.buttons {
     flex-direction: row;

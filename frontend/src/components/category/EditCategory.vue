@@ -225,7 +225,7 @@ const clear = () => {
 }
 @media(max-width: 450px){
 	.division .line{
-		width: 50%;
+		width: 90%;
 	}
 }
 </style>
