@@ -318,17 +318,6 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
-.container-main {
-	margin: 9rem auto;
-}
-.container-form {
-  border: none;
-  border-top: 5px solid var(--medium_purple);
-  background: var(--space_cadet);
-  color: var(--purple_navy);
-  margin-top: 8%;
-}
-
 .division {
   float: none;
   position: relative;

@@ -189,7 +189,7 @@ onMounted(() => {
   height: 430px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
   margin: auto;
 }
 .container .card {
@@ -223,9 +223,8 @@ onMounted(() => {
   font-weight: 900;
   margin-top: 3%;
   margin-bottom: 1%;
-  margin-left: 10%;
   color: white;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
 }
