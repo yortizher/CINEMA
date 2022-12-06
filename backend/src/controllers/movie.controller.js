@@ -81,6 +81,10 @@ export const editResponse = async (req,res) => {
     const { id } = req.params
     try {
 
+        const  { tempFilePath:fileStr }  = req.files.img_url
+
+        const uploadResponse = await cloudinary.uploader.upload( fileStr, { upload_preset: "pets_folder" })
+
         const { name, category_id,  duration, synopsis, age_range } = req.body
     
         const editRegister = await Movie.findByPk(id)
@@ -92,6 +96,7 @@ export const editResponse = async (req,res) => {
             editRegister.duration = duration
             editRegister.synopsis = synopsis
             editRegister.age_range = age_range
+            editRegister.img_url = uploadResponse.secure_url
             await editRegister.save()
         
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
