@@ -150,23 +150,6 @@ const message1 = (text) => {
   });
 };
 
-// const sendDataBillboard = async() => {
-//   console.log("entro")
-//   console.log(state.billboard_id)
-//   const urlData1 =
-//     `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${state.billboard_id}`;
-//     await fetch(urlData1)
-//     .then((resp) => resp.json())
-//     .then((data) => (billboardItem.value = data));
-//      console.log(billboardItem.value)
-//      console.log(billboardItem.value.price)
-//      multplication();
-// };
-
-// const multplication = () =>{
-//   state.total= (state.amount*billboardItem.value.price)
-// }
-
 onMounted(() => {
   getMovie();
   getRoom();
@@ -317,7 +300,7 @@ onMounted(() => {
                 </svg>
                 Guardar
               </button>
-              <RouterLink  to="/consultBillboard"  type="submit" class="btn btn-block btn-primary btn-lg">
+              <RouterLink  to="/consultBillboard"  type="submit" class="btn btn-block btn-primary btn-lg  ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

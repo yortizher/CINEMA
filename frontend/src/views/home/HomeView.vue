@@ -1,13 +1,16 @@
 <script setup>
-import Card from "../../components/home/Card.vue"
+import Card from "../../components/home/Card.vue";
 import MenuVue from "../../components/navigation/Menu.vue";
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 32befd1caff71ef083a65082b965117d99c0d847
 
 let URL = window.location;
-
 </script>
 <template>
+  <MenuVue />
 
 <MenuVue/>
 
@@ -19,5 +22,4 @@ let URL = window.location;
 </div>
 </template>
 <style scoped>
-
 </style>
