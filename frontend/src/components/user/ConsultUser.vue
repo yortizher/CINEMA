@@ -29,6 +29,8 @@ const userDelete = (id) => {
     .then((response) => response)
     .then((response) => {
       console.log(response)
+
+      getUser();
     })
     .catch((error) => {
       console.error("Error:", error);

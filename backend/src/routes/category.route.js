@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { 
     getResponses,
     responseById,
@@ -11,6 +12,6 @@ export const categoryRouter = Router()
 
 categoryRouter.get('/', getResponses)
 categoryRouter.get('/:id', responseById)
-categoryRouter.post('/', createResponse)
+categoryRouter.post('/',  createResponse)
 categoryRouter.delete('/:id', deleteResponse)
 categoryRouter.put('/:id', editResponse)

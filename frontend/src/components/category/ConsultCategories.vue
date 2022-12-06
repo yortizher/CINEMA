@@ -29,6 +29,7 @@ const categoryDelete = (id) => {
     .then((response) => response)
     .then((response) => {
       console.log(response)
+      getCategories();
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -39,6 +40,7 @@ const categoryDelete = (id) => {
     "Se ha eliminado una categoria",
     1500
   );
+  
 };
 
 const message = (position, title, text, time) => {

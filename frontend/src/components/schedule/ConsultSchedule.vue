@@ -29,6 +29,7 @@ const scheduleDelete = (id) => {
     .then((response) => response)
     .then((response) => {
       console.log(response)
+      getSchedule();
     })
     .catch((error) => {
       console.error("Error:", error);
