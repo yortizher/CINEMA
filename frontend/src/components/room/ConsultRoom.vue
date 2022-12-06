@@ -40,6 +40,8 @@ const categoryDelete = (id) => {
       
       console.log(response)
 
+/////////////////////////////////////////////aca
+
       getSalas();
     })
     .catch((error) => {

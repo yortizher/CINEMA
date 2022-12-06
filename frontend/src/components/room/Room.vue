@@ -264,5 +264,11 @@ onMounted(() => {
   border-style: solid;
   border-color: white;
   border-width: 34px;
+  justify-content: center;
+}
+.container1 .rectangulo{
+  
+  justify-content: center;
+  margin: 10% auto;
 }
 </style>

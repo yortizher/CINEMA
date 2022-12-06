@@ -36,7 +36,7 @@ const categoryDelete = (id) => {
       
       console.log(response)
 
-      getSalas();
+      getBillboard();
     })
     .catch((error) => {
       console.error("Error:", error);

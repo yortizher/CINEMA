@@ -29,6 +29,7 @@ const movieDelete = (id) => {
     .then((response) => response)
     .then((response) => {
       console.log(response)
+      getMovies();
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -72,7 +73,7 @@ const message = (position, title, text, time) => {
                             <div class="row-item--left">
                               <img :src="item.img_url" alt="foto de la película" class="img">
                               <p class="widget-subheading"><span class="h6 sub-title">Duración:</span>{{item.duration}}</p>
-                              <p class="widget-subheading"><span class="h6 sub-title">Categoria:</span> {{item.category.name}}</p>
+                              <!-- <p class="widget-subheading"><span class="h6 sub-title">Categoria:</span> {{item.category.name}}</p> -->
                               <p class="widget-subheading"><span class="h6 sub-title">Edad:</span>{{item.age_range}}</p>
                             </div>
                             <div class="row-item--right">

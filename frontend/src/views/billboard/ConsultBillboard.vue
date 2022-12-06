@@ -69,7 +69,7 @@ const message = (position, title, text, time) => {
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
-          <h3 class="card-header-title font-size-lg text-capitalize text-secondary">Carteleras</h3>
+          <h3 class="card-header-title font-size-lg text-capitalize text-secondary">Carteleras dilan</h3>
          </div>
             <div style="position: static;">
               <div>
