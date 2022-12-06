@@ -138,7 +138,7 @@ const message1 = (text) => {
         
         <div class="container-form py-3 px-2">
           <h2 class="text-center mb-3 mt-2 h2 text-white">
-            Editar sala
+            Editar sala yenifer ortiz
           </h2>
           <div class="division">
             <hr class="line" />

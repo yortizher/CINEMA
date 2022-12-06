@@ -282,11 +282,9 @@ const message1 = (text) => {
 }
 @media(min-width: 450px){
 	.division .line{
-		width: 50%;
+		width: 85%;
 	}
-	.buttons {
-    flex-direction: row;
-}
+
 }
 @media (min-width: 767px) {
   .bn {

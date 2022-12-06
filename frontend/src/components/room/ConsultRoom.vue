@@ -80,7 +80,7 @@ const sendData =(data)=>{
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
-          <h3 class="card-header-title font-size-lg text-capitalize text-secondary text-light text-center">Salas</h3>
+          <h3 class="card-header-title font-size-lg text-capitalize text-secondary text-light text-center">Salas yenifer ortiz</h3>
          </div>
             <div style="position: static;">
               <div>

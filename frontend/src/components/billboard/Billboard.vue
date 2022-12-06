@@ -149,22 +149,7 @@ const message1 = (text) => {
   });
 };
 
-// const sendDataBillboard = async() => {
-//   console.log("entro")
-//   console.log(state.billboard_id)
-//   const urlData1 =
-//     `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${state.billboard_id}`;
-//     await fetch(urlData1)
-//     .then((resp) => resp.json())
-//     .then((data) => (billboardItem.value = data));
-//      console.log(billboardItem.value)
-//      console.log(billboardItem.value.price)
-//      multplication();
-// };
 
-// const multplication = () =>{
-//   state.total= (state.amount*billboardItem.value.price)
-// }
 
 onMounted(() => {
   getMovie();
@@ -411,6 +396,12 @@ onMounted(() => {
   border: none;
 }
 
+@media (max-width: 450px) {
+  .division .line {
+    width: 50%;
+  }
+}
+
 @media (min-width: 767px) {
   .bn {
     text-align: right;
@@ -422,9 +413,5 @@ onMounted(() => {
     align-items: center;
   }
 }
-@media (max-width: 450px) {
-  .division .line {
-    width: 50%;
-  }
-}
+
 </style>

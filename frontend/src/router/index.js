@@ -114,7 +114,7 @@ const router = createRouter({
         {
           path: '/createRoom', 
           name: 'createRoom',
-          component: () => import('../components/room/createRoom.vue')
+          component: () => import('../components/room/CreateRoom.vue')
         },
         {
           path: '/consultRoom', 
