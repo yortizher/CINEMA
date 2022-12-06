@@ -70,9 +70,9 @@ const sendData =(data)=>{
 
 </script>
 <template>
-<div class="row d-flex justify-content-end container container-main">
+<div class="row d-flex justify-content-end container ">
     <div class="col-md-8">
-      <div class="card-hover-shadow-2x mb-3 card">
+      <div class="card-hover-shadow-2x card">
         <div class="card-header">
           <h3 class="card-header-title font-size-lg text-capitalize text-secondary text-light text-center">Carteleras</h3>
          </div>
@@ -84,7 +84,10 @@ const sendData =(data)=>{
                     <div class="widget-content p-0">
                       <div class="widget-content-wrapper">
                         <div class="flex2">
-                          <p class="">{{item.id}}</p>
+                          <p class="ms-2 mt-2">
+                            <strong >
+                              id 
+                            </strong> <span class="widget-subheading">: {{item.id}}</span> </p>
                         </div>
                         
                         <div class="widget-content-right">
@@ -111,6 +114,13 @@ const sendData =(data)=>{
 </div>
 </template>
 <style scoped>
+.widget-subheading{
+    color: var(--medium_gray);
+    font-size: 1rem;
+    width: 80%;
+    margin: 0 22px 0 0;
+}
+
 .card-header {
   background: var(--purple_navy);
 }
@@ -120,11 +130,57 @@ const sendData =(data)=>{
 .bg-primary {
   background-color: var(--medium_purple) !important;
 }
-.container-main {
-	margin-top: 5rem;
-}
 .container{
-    margin-top:100px;
+    margin-top:10%;
+}
+
+.widget-subheading{
+    color: var(--medium_gray);
+    font-size: 0.8rem;
+}
+.todo-indicator {
+    position: absolute;
+    width: 4px;
+    height: 60%;
+    border-radius: 0.3rem;
+    left: 0.625rem;
+    top: 20%;
+    opacity: .6;
+    transition: opacity .2s;
+}
+.widget-content .widget-content-wrapper {
+    display: flex;
+    flex: 1;
+    position: relative;
+    align-items: center;
+}
+
+.widget-content .widget-content-right {
+    margin-left: auto;
+}
+.btn-outline-success:hover {
+    color: var(--white);
+    background-color: #3ac47d;
+    border-color: #3ac47d;
+}
+.widget-subheading{
+    color: var(--medium_gray);
+    font-size: 1rem;
+    width: 80%;
+    margin: 0 22px 0 0;
+}
+.card-header {
+  background: var(--purple_navy);
+}
+.sub-title {
+  color: var(--space_cadet);
+}
+.bg-primary {
+  background-color: var(--medium_purple) !important;
+}
+
+.container{
+    margin-top:10%;
 }
 
 .widget-subheading{

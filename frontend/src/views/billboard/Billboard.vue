@@ -333,12 +333,13 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
+
 .container-form {
   border: none;
   border-top: 5px solid var(--medium_purple);
   background: var(--space_cadet);
   color: var(--purple_navy);
-  margin-top: 8%;
+  margin-top: 20%;
 }
 
 .division {

@@ -74,7 +74,7 @@ const sendData =(data)=>{
 
 </script>
 <template>
-<div class="row d-flex justify-content-end container container-main">
+<div class="row d-flex justify-content-end container ">
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
@@ -87,8 +87,12 @@ const sendData =(data)=>{
                     <div class="todo-indicator bg-primary"></div>
                     <div class="widget-content p-0">
                       <div class="widget-content-wrapper">
+                       
                         <div class="flex2">
-                          <p class="">{{item.name}}</p>
+                          <p class="ms-2 mt-2">
+                            <strong >Nombre </strong>
+                            <span class="widget-subheading">: {{item.name}}</span> 
+                          </p>
                         </div>
                         
                         <div class="widget-content-right">
@@ -115,9 +119,13 @@ const sendData =(data)=>{
 </div>
 </template>
 <style scoped>
-.container-main {
-	margin-top: 5rem;
+.widget-subheading{
+    color: var(--medium_gray);
+    font-size: 1rem;
+    width: 80%;
+    margin: 0 22px 0 0;
 }
+
 .card-header {
   background: var(--purple_navy);
 }
@@ -128,7 +136,7 @@ const sendData =(data)=>{
   background-color: var(--medium_purple) !important;
 }
 .container{
-    margin-top:100px;
+    margin-top:10%;
 }
 
 .widget-subheading{

@@ -16,7 +16,7 @@ defineProps(['movie']);
           <p class="text-secondary"><span class="h5 text-secondary">Duración:</span> {{movie.duration}}</p>  
           <p class="text-secondary"><span class="h5 text-secondary">Sinopsis:</span> {{movie.synopsis}}</p>
           <p class="text-secondary"><span class="h5 text-secondary">Rango de Edad:</span> {{movie.age_range}}</p>
-          <p class="text-secondary"><span class="h5 text-secondary ">Género:</span> {{movie.category.name}}</p> 
+          <!-- <p class="text-secondary"><span class="h5 text-secondary ">Género:</span> {{movie.category.name}}</p>  -->
         </div>
         </div>
         <div class="modal-footer">

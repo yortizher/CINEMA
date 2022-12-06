@@ -141,22 +141,7 @@ const message1 = (text) => {
   });
 };
 
-// const sendDataBillboard = async() => {
-//   console.log("entro")
-//   console.log(state.billboard_id)
-//   const urlData1 =
-//     `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${state.billboard_id}`;
-//     await fetch(urlData1)
-//     .then((resp) => resp.json())
-//     .then((data) => (billboardItem.value = data));
-//      console.log(billboardItem.value)
-//      console.log(billboardItem.value.price)
-//      multplication();
-// };
 
-// const multplication = () =>{
-//   state.total= (state.amount*billboardItem.value.price)
-// }
 
 onMounted(() => {
   getMovie();
@@ -165,11 +150,11 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="container container-main">
+  <div class="container ">
     <div class="row d-flex justify-content-center mt-5">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="container-form py-3 px-2">
-          <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar cartelera</h2>
+        <div class="container-form  ">
+          <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar cartelera yeniferrrr</h2>
           <div class="division">
             <hr class="line" />
           </div>
@@ -333,16 +318,8 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
-.container-main {
-	margin-top: 5rem;
-}
-.container-form {
-  border: none;
-  border-top: 5px solid var(--medium_purple);
-  background: var(--space_cadet);
-  color: var(--purple_navy);
-  margin-top: 8%;
-}
+
+
 
 .division {
   float: none;
@@ -418,4 +395,5 @@ onMounted(() => {
     width: 50%;
   }
 }
+
 </style>
