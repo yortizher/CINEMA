@@ -9,44 +9,54 @@ const schedule = ref([]);
 const movie = ref([]);
 
 const state = reactive({
-    room_id: "",
-    movie_id: "",
-    start_date: "",
-    end_date: "",
-    price: "",
-    schedule_id: "",
+  room_id: "",
+  movie_id: "",
+  start_date: "",
+  end_date: "",
+  price: "",
+  schedule_id: "",
 });
 
 const clear = () => {
-
-    $v.value.$reset(); // ayuda a que no este todo en rojo
-      (state.room_id = ""),
-      (state.movie_id = ""),
-      (state.start_date = ""),
-      (state.end_date = "");
-      (state.price = ""),
-      (state.schedule_id = "");
+  $v.value.$reset(); // ayuda a que no este todo en rojo
+  (state.room_id = ""),
+    (state.movie_id = ""),
+    (state.start_date = ""),
+    (state.end_date = "");
+  (state.price = ""), (state.schedule_id = "");
 };
 
-    
 const rules = computed(() => {
   return {
     room_id: {
-      required: helpers.withMessage("El campo sala es obligatorio",required),
+      required: helpers.withMessage("El campo sala es obligatorio", required),
     },
     movie_id: {
-      required: helpers.withMessage("La campo pelicula es obligatorio",required),
+      required: helpers.withMessage(
+        "La campo pelicula es obligatorio",
+        required
+      ),
     },
-    start_date: {required: helpers.withMessage("El campo inicio de fecha es obligatorio",required),
+    start_date: {
+      required: helpers.withMessage(
+        "El campo inicio de fecha es obligatorio",
+        required
+      ),
     },
     end_date: {
-      required: helpers.withMessage("El campo fin de fecha es obligatorio", required),
+      required: helpers.withMessage(
+        "El campo fin de fecha es obligatorio",
+        required
+      ),
     },
     price: {
       required: helpers.withMessage("El campo precio es obligatorio", required),
     },
     schedule_id: {
-      required: helpers.withMessage("El campo calendario es obligatorio", required),
+      required: helpers.withMessage(
+        "El campo calendario es obligatorio",
+        required
+      ),
     },
   };
 });
@@ -100,18 +110,16 @@ const getMovie = () => {
   fetch(urlData)
     .then((resp) => resp.json())
     .then((data) => (movie.value = data));
-    console.log(movie.value)
+  console.log(movie.value);
 };
 
 const getRoom = () => {
-  const urlData =
-    "https://cinema-production-cb13.up.railway.app/api/v1/room";
+  const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/room";
   fetch(urlData)
     .then((resp) => resp.json())
     .then((data) => (room.value = data));
-    console.log(room.value)
+  console.log(room.value);
 };
-
 
 const getsChedule = () => {
   const urlData =
@@ -119,7 +127,7 @@ const getsChedule = () => {
   fetch(urlData)
     .then((resp) => resp.json())
     .then((data) => (schedule.value = data));
-    console.log(schedule.value)
+  console.log(schedule.value);
 };
 
 const message = (position, title, text, time) => {
@@ -141,7 +149,22 @@ const message1 = (text) => {
   });
 };
 
+// const sendDataBillboard = async() => {
+//   console.log("entro")
+//   console.log(state.billboard_id)
+//   const urlData1 =
+//     `https://cinema-production-cb13.up.railway.app/api/v1/billboard/${state.billboard_id}`;
+//     await fetch(urlData1)
+//     .then((resp) => resp.json())
+//     .then((data) => (billboardItem.value = data));
+//      console.log(billboardItem.value)
+//      console.log(billboardItem.value.price)
+//      multplication();
+// };
 
+// const multplication = () =>{
+//   state.total= (state.amount*billboardItem.value.price)
+// }
 
 onMounted(() => {
   getMovie();
@@ -150,11 +173,13 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="container">
-    <div class="row d-flex justify-content-center container-main">
+  <div class="container my-5">
+    <div class="row d-flex justify-content-center mt-5">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="container-form  ">
-          <h2 class="text-center mb-3 mt-2 h2 text-white">Registrar cartelera yeniferrrr</h2>
+        <div class="container-form py-3 px-2">
+          <h2 class="text-center mb-3 mt-2 h2 text-white">
+            Registrar cartelera
+          </h2>
           <div class="division">
             <hr class="line" />
           </div>
@@ -164,7 +189,6 @@ onMounted(() => {
                 id="disabledSelect"
                 class="form-select"
                 v-model="state.room_id"
-                
               >
                 <option value="" selected disabled>Seleccione sala</option>
                 <option
@@ -187,7 +211,6 @@ onMounted(() => {
                 id="disabledSelect"
                 class="form-select"
                 v-model="state.movie_id"
-                
               >
                 <option value="" selected disabled>Seleccione pelicula</option>
                 <option
@@ -255,7 +278,6 @@ onMounted(() => {
                 id="disabledSelect"
                 class="form-select"
                 v-model="state.schedule_id"
-                
               >
                 <option value="" selected disabled>Seleccione horario</option>
                 <option
@@ -292,7 +314,11 @@ onMounted(() => {
                 </svg>
                 Guardar
               </button>
-              <RouterLink  to="/consultBillboard"  type="submit" class="btn btn-block btn-primary btn-lg">
+              <RouterLink
+                to="/consultBillboard"
+                type="submit"
+                class="btn btn-block btn-primary btn-lg"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -318,6 +344,14 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
+.container-form {
+  border: none;
+  border-top: 5px solid var(--medium_purple);
+  background: var(--space_cadet);
+  color: var(--purple_navy);
+  margin-top: 20%;
+}
+
 .division {
   float: none;
   position: relative;
@@ -345,7 +379,6 @@ onMounted(() => {
   letter-spacing: 1px;
   color: var(--light_gray);
 }
-
 .form-select:focus,
 .form-control:focus {
   border: 1px solid var(--medium_purple);
@@ -376,14 +409,6 @@ onMounted(() => {
   box-shadow: none;
   border: none;
 }
-@media(min-width: 450px){
-	.division .line{
-		width: 50%;
-	}
-	.buttons {
-    flex-direction: row;
-}
-}
 
 @media (min-width: 767px) {
   .bn {
@@ -396,6 +421,9 @@ onMounted(() => {
     align-items: center;
   }
 }
-
-
+@media (max-width: 450px) {
+  .division .line {
+    width: 50%;
+  }
+}
 </style>
