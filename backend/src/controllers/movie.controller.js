@@ -79,29 +79,37 @@ export const deleteResponse = async (req,res) => {
 export const editResponse = async (req,res) => {
     
     const { id } = req.params
+
     try {
 
-        // const  { tempFilePath:fileStr }  = req.files.img_url
-
-        // const uploadResponse = await cloudinary.uploader.upload( fileStr, { upload_preset: "pets_folder" })
-
+        const { name, category_id, duration, synopsis, age_range } = req.body
     
         const editRegister = await Movie.findByPk(id)
 
-        if (editRegister) {
-
-            editRegister.name = req.body?.name
-            editRegister.category_id = req.body?.category_id 
-            editRegister.duration = req.body?.duration
-            editRegister.synopsis = req.body?.synopsis
-            editRegister.age_range = req.body?.age_range
+        if (!req.files) {
+            editRegister.name = name
+            editRegister.category_id = category_id 
+            editRegister.duration = duration
+            editRegister.synopsis = synopsis
+            editRegister.age_range = age_range
             await editRegister.save()
             
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
         } else {
-            res.status(404).json({error: "No existen registros con ese ID"})
+            const  { tempFilePath:fileStr }  = req.files.img_url
+            const uploadResponse = await cloudinary.uploader.upload( fileStr, { upload_preset: "pets_folder" })
+
+            editRegister.name = name
+            editRegister.category_id = category_id 
+            editRegister.duration = duration
+            editRegister.synopsis = synopsis
+            editRegister.age_range = age_range
+            editRegister.img_url = uploadResponse.secure_url
+            await editRegister.save()
+            
+            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister}) 
         }
-       
+      
       } catch (err) {
         return res.status(500).json({ message: err})
       }
