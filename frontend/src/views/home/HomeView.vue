@@ -1,6 +1,6 @@
 <script setup>
 import Card from "../../components/home/Card.vue"
-import Cards from "../../components/home/Cards.vue"
+// import Cards from "../../components/home/Cards.vue"
 </script>
 <template>
     <div class="container-main">

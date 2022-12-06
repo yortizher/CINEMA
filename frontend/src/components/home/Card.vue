@@ -1,10 +1,11 @@
 <script setup>
 import {  ref, onMounted, computed} from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import DetailModal from '../home/DetailModal.vue'
   
 
 const router = useRouter();
-
+const movieSelected = ref({});
 const movies = ref([]);
 
 const getMovies = () => {
@@ -18,22 +19,24 @@ const getMovies = () => {
 onMounted(()=> {
 	getMovies();
 });
+const setMovieSelected = (movie) => movieSelected.value = {...movie}
 </script>
 <template>
     <div class="row">
-    <div class="col-md-3 col-sm-6">
-        <div class="card-grid card-container" v-for="item in movies " :key="item.id">
+    <div class="card-grid">
+        <div class="card-container" v-for="movie in movies " :key="movie.id">
             <div class="card-image">
                 <a href="#" class="image">
-                    <img :src="item.img_url" class="img-fluid " :alt="item.name">
+                    <img :src="movie.img_url" class="img-fluid " :alt="movie.name">
                 </a>
-                <span class="card-discount-label">Duración:{{item.duration}}</span>
-                <a href="" class="add-to-cart">Detalles</a>
+                <span class="card-discount-label">Duración:{{movie.duration}}</span>
+                <a href="#" class="add-to-cart" @click="setMovieSelected(movie)" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</a>
             </div>
             <div class="card-content">
-                <h3 class="title text-secondary">{{item.name}}</h3>
-                <div class="sub-title">Género:<span>{{item.category.name}}</span></div>
+                <h3 class="title text-secondary">{{movie.name}}</h3>
+                <div class="sub-title">Género:<span>{{movie.category.name}}</span></div>
             </div>
+            <DetailModal :movie="movieSelected"/> 
         </div>
     </div>
 </div>
@@ -43,24 +46,17 @@ onMounted(()=> {
     font-family: 'Poppins', sans-serif;
     text-align: center;
     display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 0.2fr));
-  padding: 1rem 13px;
-  gap: 36px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 0.2fr));
+    padding: 1rem 13px;
+    gap: 30px;
 }
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 0.2fr));
-  padding: 1rem 13px;
-  gap: 36px;
-  border: none !important;
-  perspective: 800px; 
-}
-/* .card-grid .card-image{
+
+.card-grid .card-image{
     overflow: hidden;
     position: relative;
     z-index: 1;
 }
-.card-grid .card-image a.image{display: block; } */
+.card-grid .card-image a.image{display: block; }
 .card-grid .card-image img{
     /* width: 100%;
     height: auto; */
@@ -70,13 +66,6 @@ onMounted(()=> {
     transition: all .3s ease-in-out;    
     transform: scale(1);
 }
-/* .products .card img {
-    width: 180%;
-    height: 20rem;
-    object-fit: cover;
-    transition: all .3s ease-in-out;    
-    transform: scale(1);
-} */
 .img-fluid {
     max-width: 100%;
     height: 12rem;
@@ -131,6 +120,7 @@ onMounted(()=> {
     left: 0;
     bottom: -60px;
     transition: all 0.3s ease 0s;
+    text-decoration: none;
 }
 .card-grid:hover .add-to-cart{ bottom: 0; }
 .card-grid .add-to-cart:hover{ text-shadow: 4px 4px rgba(0,0,0,0.2); }
@@ -154,11 +144,13 @@ onMounted(()=> {
     color: #0d0d0d;
     font-size: 14px;
     font-weight: 600;
+    white-space: nowrap;
 }
 .card-grid .sub-title span{
     color: #888;
     font-size: 13px;
     font-weight: 400;
+    white-space: nowrap;
     /* text-decoration: line-through; */
 }
 @media screen and (max-width: 990px){
