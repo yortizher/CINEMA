@@ -65,11 +65,11 @@ const message = (position, title, text, time) => {
 
 </script>
 <template>
-<div class="row d-flex justify-content-end container">
+<div class="row d-flex justify-content-end container container-main">
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
-          <h3 class="card-header-title font-size-lg text-capitalize text-secondary">Salas</h3>
+          <h3 class="card-header-title font-size-lg text-capitalize text-secondary text-light text-center">Salas</h3>
          </div>
             <div style="position: static;">
               <div>
@@ -106,7 +106,18 @@ const message = (position, title, text, time) => {
 </div>
 </template>
 <style scoped>
-
+.container-main {
+	margin-top: 5rem;
+}
+.card-header {
+  background: var(--purple_navy);
+}
+.sub-title {
+  color: var(--space_cadet);
+}
+.bg-primary {
+  background-color: var(--medium_purple) !important;
+}
 .container{
     margin-top:100px;
 }

@@ -14,9 +14,7 @@ console.log("categories_id",categories_id.value)
 
 
 const formCategory = ref({
-  id:"",
   name: "",
-  up_name: "",
 }); 
 const filterCategories = ref([]);
 
@@ -35,7 +33,7 @@ const submitForm = async () => {
   const result = await v$.value.$validate();
   if(result) {
     editCategory();
-	clear();
+	// clear();
   } else {
     messageError("Verifique que todos los campos este llenos");
   }
@@ -46,27 +44,18 @@ const getCategories = () => {
    const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/category"
    fetch(urlData)
    .then(resp => resp.json())
-   .then(data => filterCategories.value = data )
-   console.log(filterCategories)
+   .then(data => formCategory.value = data.find(d => d.id == categories_id.value) )
+   console.log(formCategory)
 }
 
 onMounted(()=> {
 	getCategories();
 });
-const filter = computed(() => {
-	for (let x in filterCategories.value) {
-		if(filterCategories.value[x].id == schedules_id.value) {
-			formCategory.value.id = filterCategories.value[x].id,
-			formCategory.value.name = filterCategories.value[x].name	
-		}
-	}
-console.log(formCategory.value.id)
-console.log(formCategory.value.name)
-});
 
 const editCategory = async () => {
 	const formData = new FormData();
-    formData.append("name", formCategory.value.up_name);
+    formData.append("name", formCategory.value.name
+	);
 
 	 console.log(formData)
 
@@ -116,7 +105,7 @@ const clear = () => {
 
 </script>
 <template>
-<div class="container my-5">
+<div class="container container-main">
 	<div class="row d-flex justify-content-center mt-5">
 		<div class="col-12 col-md-8 col-lg-6 col-xl-5">
 			<div class="container-form py-3 px-2">
@@ -126,8 +115,7 @@ const clear = () => {
 				</div>
 				<form class="form" @submit.prevent="submitForm()">
 					<div class="form-group">
-    					<!-- <input type="text" class="form-control" placeholder="Nombre"> -->
-						<input type="text" class="form-control" :placeholder="formCategory.name" v-model="formCategory.up_name"/>
+    					<input type="text" class="form-control" placeholder="Nombre" v-model="formCategory.name">
 						<!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
   					</div>
   					<div class="form-group buttons mt-3">
@@ -146,6 +134,9 @@ const clear = () => {
 </div>
 </template>
 <style scoped>
+.container-main {
+	margin-top: 5rem;
+}
 .container-form{
 	border: none;
 	border-top: 5px solid  var(--medium_purple);

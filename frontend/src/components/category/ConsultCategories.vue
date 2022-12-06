@@ -58,7 +58,7 @@ const message = (position, title, text, time) => {
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
-          <h3 class="card-header-title font-size-lg text-capitalize text-secondary">Categorias</h3>
+          <h3 class="card-header-title font-size-lg text-capitalize text-center">Categorías</h3>
          </div>
             <div style="position: static;">
               <div>
@@ -68,7 +68,7 @@ const message = (position, title, text, time) => {
                     <div class="widget-content p-0">
                       <div class="widget-content-wrapper">
                         <div class="flex2">
-                          <p class="">{{item.name}}</p>
+                          <p class=""><span class="mx-3 h6 sub-title">Nombre:</span>{{item.name}}</p>
                         </div>
                         
                         <div class="widget-content-right">
@@ -96,6 +96,15 @@ const message = (position, title, text, time) => {
 </template>
 <style scoped>
 
+.card-header {
+  background: var(--purple_navy);
+}
+.sub-title {
+  color: var(--space_cadet);
+}
+.bg-primary {
+  background-color: var(--medium_purple) !important;
+}
 .container{
     margin-top:100px;
 }

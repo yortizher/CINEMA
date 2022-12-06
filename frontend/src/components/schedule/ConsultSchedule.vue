@@ -53,11 +53,11 @@ const message = (position, title, text, time) => {
 };
 </script>
 <template>
-<div class="row d-flex justify-content-end container">
+<div class="row d-flex justify-content-end container container-main">
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
-          <h3 class="card-header-title font-size-lg text-capitalize text-secondary">Horarios</h3>
+          <h3 class="card-header-title font-size-lg text-capitalize text-light text-center">Horarios</h3>
          </div>
             <div style="position: static;">
               <div>
@@ -67,7 +67,7 @@ const message = (position, title, text, time) => {
                     <div class="widget-content p-0">
                       <div class="widget-content-wrapper">
                         <div class="flex2">
-                          <p class="">{{item.start_time}}</p>
+                          <p class=""><span class="mx-3 h6 sub-title">Hora de Inicio:</span>{{item.start_time}}</p>
                         </div>     
                         <div class="widget-content-right">
                           <button @click="editSchedule(item.id)" class="border-0  btn btn-outline-success">
@@ -93,15 +93,26 @@ const message = (position, title, text, time) => {
 </div>
 </template>
 <style scoped>
-
+.container-main {
+	margin-top: 5rem;
+}
+.card-header {
+  background: var(--purple_navy);
+}
+.sub-title {
+  color: var(--space_cadet);
+}
+.bg-primary {
+  background-color: var(--medium_purple) !important;
+}
 .container{
     margin-top:100px;
 }
-
 .widget-subheading{
     color: var(--medium_gray);
     font-size: 0.8rem;
 }
+
 .todo-indicator {
     position: absolute;
     width: 4px;
@@ -112,6 +123,7 @@ const message = (position, title, text, time) => {
     opacity: .6;
     transition: opacity .2s;
 }
+
 .widget-content .widget-content-wrapper {
     display: flex;
     flex: 1;

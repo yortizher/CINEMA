@@ -5,11 +5,8 @@ import { required, maxLength, minValue, numeric,alpha, helpers } from '@vuelidat
 import { useRouter, useRoute } from 'vue-router'
 
 const {params } = useRoute();
-console.log(params)
-const user_id = ref(params.id)
-console.log("user_id ",user_id.value)
 
-const filterUser = ref([]);
+const user_id = ref(params.id)
 
 const formUser = ref({
   name: "",
@@ -19,19 +16,13 @@ const formUser = ref({
   phone: "",
   email: "",
 }); 
-const users = reactive([]);
+
 
 const getUser = () => {
    const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/user"
    fetch(urlData)
    .then(resp => resp.json())
-  //  .then(data => users.value = data.filter(d => d.id == user_id.value) )
-  //  console.log(users)
-  // .then(data => formUser.value = data.filter(d => d.id == user_id.value) )
   .then(data => formUser.value = data.find(d => d.id == user_id.value) )
-  console.log(formUser)
-  console.log(formUser.value.name)
-  console.log(formUser.value.id)
 }
 
 onMounted(()=> {
@@ -67,7 +58,6 @@ const submitForm = async () => {
   const result = await v$.value.$validate();
   if(result) {
     editUser();
-    // clear();
   } else {
     messageError("Verifique que todos los campos este llenos");
   }
@@ -100,8 +90,7 @@ const editUser = async () => {
   formData.append("phone", formUser.value.phone);
   formData.append("email", formUser.value.email);
 
- console.log(formData)
- console.log(formData.name, formData.lastname, formData.cc, formData.address, formData.phone, formData.email)
+
   const urlDB = `https://cinema-production-cb13.up.railway.app/api/v1/user/${user_id.value}`;
 
   await fetch(urlDB, {
@@ -113,7 +102,7 @@ const editUser = async () => {
         message(
           "center",
           "Actualización completada",
-          "Se ha actualizado correctamente la categoria",
+          "Se ha actualizado correctamente el usuario",
           1500
         );
         console.log(response)
@@ -125,22 +114,11 @@ const editUser = async () => {
         console.error("Error:", error);
       });
 };
-const clear = () => {
-  v$.value.$reset()
-  formUser.value.name = "";
-  formUser.value.lastname = "";
-  formUser.value.cc = "";
-  formUser.value.address ="";
-  formUser.value.phone = "";
-  formUser.value.email = "";
-}
-
-
 
 
 </script>
 <template>
-	<div class="container my-5">
+	<div class="container container-main">
 	  <div class="row d-flex justify-content-center mt-5">
 		  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
 			  <div class="container-form py-3 px-2">
@@ -151,27 +129,27 @@ const clear = () => {
 				  <form class="form">
 					  <div class="form-group">
 						  <input type="text" class="form-control" placeholder="Nombre" v-model="formUser.name">
-						  <!-- <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						  <span v-for="error in v$.name.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
 						</div>
 					   <div class="form-group">
 						  <input type="text" class="form-control" placeholder="Apellido" v-model="formUser.lastname">	
-						  <!-- <span v-for="error in v$.lastname.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						  <span v-for="error in v$.lastname.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
 						</div>
 					  <div class="form-group">
 						  <input type="text" class="form-control" placeholder="Documento" v-model="formUser.cc">
-						  <!-- <span v-for="error in v$.cc.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						  <span v-for="error in v$.cc.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
 						</div>
 					  <div class="form-group">
 						  <input type="text" class="form-control" placeholder="Dirección" v-model="formUser.address">
-						  <!-- <span v-for="error in v$.address.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						  <span v-for="error in v$.address.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
 						</div>
 					   <div class="form-group">
 						  <input type="text" class="form-control" placeholder="Teléfono" v-model="formUser.phone">
-						  <!-- <span v-for="error in v$.phone.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						  <span v-for="error in v$.phone.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
 						</div>
 					  <div class="form-group">
 						  <input type="email" class="form-control" placeholder="Email" v-model="formUser.email">
-						  <!-- <span v-for="error in v$.email.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
+						  <span v-for="error in v$.email.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
 						</div>
 						<div class="form-group buttons mt-3">
 							<button type="button" class="btn btn-block btn-success btn-lg mx-auto" @click="submitForm()">
@@ -189,7 +167,9 @@ const clear = () => {
   </div>
   </template>
   <style scoped>
-  
+  .container-main {
+	margin-top: 5rem;
+}
   .container-form{
 	  border: none;
 	  border-top: 5px solid  var(--medium_purple);

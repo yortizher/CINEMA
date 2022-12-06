@@ -53,11 +53,11 @@ const message = (position, title, text, time) => {
 };
 </script>
 <template>
-<div class="row d-flex justify-content-end container">
+<div class="row d-flex justify-content-end container container-main">
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
-          <h3 class="card-header-title font-size-lg text-capitalize text-secondary">Peliculas</h3>
+          <h3 class="card-header-title font-size-lg text-capitalize text-light text-center">Películas</h3>
          </div>
             <div style="position: static;">
               <div>
@@ -67,10 +67,18 @@ const message = (position, title, text, time) => {
                     <div class="widget-content p-0">
                       <div class="widget-content-wrapper">
                         <div class="flex2">
-                          <p class="">{{item.name}}</p>
-                          <p class="widget-subheading">{{item.duration}}</p>
-                          <p class="widget-subheading">{{item.synopsis}}</p>
-                          <p class="widget-subheading">{{item.age_range}}</p>
+                          <p class="h5">{{item.name}}</p>
+                          <div class="items">
+                            <div class="row-item--left">
+                              <img :src="item.img_url" alt="foto de la película" class="img">
+                              <p class="widget-subheading"><span class="h6 sub-title">Duración:</span>{{item.duration}}</p>
+                              <p class="widget-subheading"><span class="h6 sub-title">Categoria:</span> {{item.category.name}}</p>
+                              <p class="widget-subheading"><span class="h6 sub-title">Edad:</span>{{item.age_range}}</p>
+                            </div>
+                            <div class="row-item--right">
+                              <p class="widget-subheading"><span class="h6 sub-title">Sinopsis:</span>{{item.synopsis}}</p>
+                            </div>
+                          </div>
                         </div>
                         
                         <div class="widget-content-right">
@@ -97,14 +105,39 @@ const message = (position, title, text, time) => {
 </div>
 </template>
 <style scoped>
-
+.container-main {
+	margin-top: 5rem;
+}
 .container{
     margin-top:100px;
 }
+.card-header {
+  background: var(--purple_navy);
+}
+.sub-title {
+  color: var(--space_cadet);
+}
+.bg-primary {
+  background-color: var(--medium_purple) !important;
+}
+.items {
+  display: flex;
+  flex-direction: row;
+}
 
+.row-item--left,
+.row-item--right{
+  display: flex;
+  flex-direction: column;
+  width: 25%;  
+}
+.row-item--right {
+  width: 80%;
+  margin-left: 1rem;
+}
 .widget-subheading{
     color: var(--medium_gray);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 .todo-indicator {
     position: absolute;
@@ -115,6 +148,10 @@ const message = (position, title, text, time) => {
     top: 20%;
     opacity: .6;
     transition: opacity .2s;
+}
+
+.bg-primary {
+  background-color: var(--medium_purple) !important;
 }
 .widget-content .widget-content-wrapper {
     display: flex;
@@ -130,5 +167,12 @@ const message = (position, title, text, time) => {
     color: var(--white);
     background-color: #3ac47d;
     border-color: #3ac47d;
+}
+.img {
+    width: 95%;
+    height: 5rem;
+    object-fit: cover;
+    transition: all .3s ease-in-out;    
+    transform: scale(1);
 }
 </style>
