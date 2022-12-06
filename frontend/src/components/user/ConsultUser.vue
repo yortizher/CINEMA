@@ -53,11 +53,11 @@ const message = (position, title, text, time) => {
 };
 </script>
 <template>
-<div class="row d-flex justify-content-end container">
+<div class="row d-flex justify-content-end container container-main">
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header">
-          <h3 class="card-header-title font-size-lg text-capitalize text-secondary">Clientes</h3>
+          <h3 class="card-header-title font-size-lg text-capitalize text-light text-center">Clientes</h3>
          </div>
             <div style="position: static;">
               <div>
@@ -67,11 +67,15 @@ const message = (position, title, text, time) => {
                     <div class="widget-content p-0">
                       <div class="widget-content-wrapper">
                         <div class="flex2">
-                          <p class="">{{item.name}} {{item.lastname}} </p>
-                          <p class="widget-subheading">{{item.cc}}</p>
-                          <p class="widget-subheading">{{item.address}}</p>
-                          <p class="widget-subheading">{{item.phone}}</p>
-                          <p class="widget-subheading">{{item.email}}</p>
+                          <p class="h5">{{item.name}} {{item.lastname}} </p>
+                          <div class="row-item">
+                          <p class="widget-subheading"><span class="h6 sub-title">Documento:</span>{{item.cc}}</p>
+                          <p class="widget-subheading"><span class="h6 sub-title">Dirección:</span>{{item.address}}</p>
+                          </div>
+                          <div class="row-item">
+                          <p class="widget-subheading"><span class="h6 sub-title">Teléfono:</span>{{item.phone}}</p>
+                          <p class="widget-subheading"><span class="h6 sub-title">Email:</span>{{item.email}}</p>
+                          </div>
                         </div>
                         
                         <div class="widget-content-right">
@@ -98,14 +102,37 @@ const message = (position, title, text, time) => {
 </div>
 </template>
 <style scoped>
+.container-main {
+	margin-top: 5rem;
+}
+.container-main {
+	margin-top: 5rem;
+}
+.card-header {
+  background: var(--purple_navy);
+}
+.sub-title, .sub-title--email {
+  color: var(--space_cadet);
+  margin: 0 5px;
+}
 
+.bg-primary {
+  background-color: var(--medium_purple) !important;
+}
+.row-item {
+  display: flex;
+  flex-direction: row;
+  width: 450px;  
+}
 .container{
     margin-top:100px;
 }
 
 .widget-subheading{
     color: var(--medium_gray);
-    font-size: 0.8rem;
+    font-size: 1rem;
+    width: 80%;
+    margin: 0 22px 0 0;
 }
 .todo-indicator {
     position: absolute;

@@ -12,9 +12,7 @@ const schedules_id = ref(params.id)
 console.log("schedules_id",schedules_id.value)
 
 const formTime = ref({
-  id:"",
   start_time: "",
-  up_time:"",
 });
 
 const filterSchedules = ref([]);
@@ -34,7 +32,6 @@ const submitForm = async () => {
   const result = await v$.value.$validate();
   if(result) {
     editSchedule();
-	clear();
   } else {
     messageError("Verifique que todos los campos este llenos");
   }
@@ -44,53 +41,18 @@ const getSchedule = () => {
    const urlData = "https://cinema-production-cb13.up.railway.app/api/v1/schedule"
    fetch(urlData)
    .then(resp => resp.json())
-   .then(data => filterSchedules.value = data)
-   console.log(filterSchedules)
+   .then(data => formTime.value = data.find(d=> d.id == schedules_id.value))
+   console.log(formTime)
 }
-// const filter = (evt) => {
-// 	console.log(evt)
-// 	for (let x in filterSchedules.value) {
-// 		if(filterSchedules.value[x].id == schedules_id.value) {
-// 			formTime.value.id = filterSchedules.value[x].id,
-// 			formTime.value.start_time = filterSchedules.value[x].start_time	
-// 		}
-// 	}
-// console.log(formTime.value.id)
-// console.log(formTime.value.start_time)
-// };
 
 onMounted(()=> {
 	getSchedule();
-	// filter();
 });
 
-// const filter = computed(() => {
-//  console.log("schedules_id...🐱‍🏍",schedules_id.value)
-//  let filterSche = ""
-//  let start_time = ""
-// for (let x in filterSchedules.value) {
-// 	if(filterSchedules.value[x].id == schedules_id.value) {
-// 		filterSche = filterSchedules.value[x].id,
-// 		start_time = filterSchedules.value[x].start_time	
-// 	}
-// }
-// console.log(filterSche)
-// console.log(start_time)
-// });
-const filterSche = computed(() => {
-	for (let x in filterSchedules.value) {
-		if(filterSchedules.value[x].id == schedules_id.value) {
-			formTime.value.id = filterSchedules.value[x].id,
-			formTime.value.start_time = filterSchedules.value[x].start_time	
-		}
-	}
-console.log(formTime.value.id)
-console.log(formTime.value.start_time)
-});
 
 const editSchedule = async () => {
     const formData = new FormData();
-    formData.append("start_time", formTime.value.up_time);
+    formData.append("start_time", formTime.value.start_time);
 
     const urlData = `https://cinema-production-cb13.up.railway.app/api/v1/schedule/${schedules_id.value}`;
     await fetch(urlData, {
@@ -131,41 +93,23 @@ const messageError = ( text) => {
     text: text,
   });
 };
-// const getStart_time = (evt)=> {
-//     formTime.value.up_time = evt.target.value;
-//     // shopping_cart.addQuantity(qty.value)
-//     // setTimeout(() => {
-//     //  qty.value = 1;
-//     // }, 5000);
-// 	console.log(formTime.value.up_time)
-// }
-const clear = () => {
-  v$.value.$reset()
-  formTime.value.start_time = "";
-}
 
 
 </script>
 <template>
-<div class="container my-5">
+<div class="container container-main">
 	<div class="row d-flex justify-content-center mt-5">
 		<div class="col-12 col-md-8 col-lg-6 col-xl-5">
 			<div class="container-form py-3 px-2">
 				<h2 class="text-center mb-3 mt-2 h2 text-white">Editar Horario</h2>
 				<div class="division">
 					<hr class="line">
-					{{filterSche}}
 				</div>
 				<form class="form" @submit.prevent="submitForm()">
 					<div class="form-group">
-						<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" @input="getStart_time($event)" v-model="formTime.start_time"> -->
-    					<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" :value="formTime.start_time"> -->
-						<input type="text" class="form-control" :placeholder="formTime.start_time" v-model="formTime.up_time"/>
-					     <!-- <input type="time" class="form-control"  v-model="formTime.start_time"/>  -->
-						<!-- <input type="text" class="form-control" placeholder="Hora de Inicio" @input="filter($event)" v-model="formTime.start_time">  -->
-						<!-- v-if="item.id === schedules_id" v-model="item.start_time" -->
-                        <!-- <span v-for="error in v$.start_time.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span> -->
-  					</div>
+					     <input type="time" class="form-control" placeholder="Hora de Inicio" v-model="formTime.start_time"/> 
+						 <span v-for="error in v$.start_time.$errors" .key="error.$uid" style="color: FireBrick;">{{error.$message}}</span>
+					</div>
   					<div class="form-group buttons mt-3">
   						<button type="submit" class="btn btn-block btn-success btn-lg mx-auto">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
@@ -182,6 +126,9 @@ const clear = () => {
 </div>
 </template>
 <style scoped>
+.container-main {
+	margin-top: 5rem;
+}
 .container-form{
 	border: none;
 	border-top: 5px solid  var(--medium_purple);

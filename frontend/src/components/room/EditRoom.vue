@@ -132,7 +132,7 @@ const message1 = (text) => {
 
 </script>
 <template>
-  <div class="container my-5">
+  <div class="container container-main">
     <div class="row d-flex justify-content-center mt-5">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         
@@ -219,6 +219,9 @@ const message1 = (text) => {
   </div>
 </template>
 <style scoped>
+.container-main {
+	margin-top: 5rem;
+}
 .container-form {
   border: none;
   border-top: 5px solid var(--medium_purple);
