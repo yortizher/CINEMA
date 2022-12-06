@@ -318,10 +318,6 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
-<<<<<<< HEAD
-
-
-=======
 .container-main {
 	margin: 9rem auto;
 }
@@ -332,7 +328,6 @@ onMounted(() => {
   color: var(--purple_navy);
   margin-top: 8%;
 }
->>>>>>> 32befd1caff71ef083a65082b965117d99c0d847
 
 .division {
   float: none;
@@ -392,6 +387,14 @@ onMounted(() => {
   box-shadow: none;
   border: none;
 }
+@media(min-width: 450px){
+	.division .line{
+		width: 50%;
+	}
+	.buttons {
+    flex-direction: row;
+}
+}
 
 @media (min-width: 767px) {
   .bn {
@@ -404,10 +407,6 @@ onMounted(() => {
     align-items: center;
   }
 }
-@media (max-width: 450px) {
-  .division .line {
-    width: 50%;
-  }
-}
+
 
 </style>
