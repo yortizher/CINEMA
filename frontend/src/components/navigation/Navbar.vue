@@ -159,4 +159,8 @@ ul {
     font-size: 2.3rem;
   }
 } 
+
+.router-link-exact-active {
+  background-color: var(--purple_navy);;
+}
 </style>

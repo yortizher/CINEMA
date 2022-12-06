@@ -131,7 +131,7 @@ onMounted(() => {
 
 <template>
   <div v-if="bandera">
-    <h1 class="text-center title1">Salas</h1>
+    <h1 class=" title1">Salas</h1>
     <div class="container">
       <div v-for="item in dataRoomS" :key="item.id" class="card">
      
@@ -189,7 +189,7 @@ onMounted(() => {
   height: 430px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: flex-end;
   margin: auto;
 }
 .container .card {
@@ -223,8 +223,9 @@ onMounted(() => {
   font-weight: 900;
   margin-top: 3%;
   margin-bottom: 1%;
+  margin-left: 10%;
   color: white;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
 }
@@ -239,7 +240,7 @@ onMounted(() => {
 .flex-container{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-end;
   padding: 2% 10% 0% 10%;
 }
 .title{
