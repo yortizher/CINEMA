@@ -1,5 +1,6 @@
 import {  DataTypes } from "sequelize";
 import { db } from "../db/db.js";
+import { Category } from "./category.model.js";
 
 const { STRING, INTEGER, DOUBLE } = DataTypes
 
@@ -17,6 +18,10 @@ export const Movie = db.define('movie',{
             type: INTEGER,
             allowNull: true
         },
+        img_url:{
+            type: STRING(500),
+            allowNull: true
+        },
         duration:{
             type: DOUBLE,
             allowNull: true
@@ -31,3 +36,6 @@ export const Movie = db.define('movie',{
         }
         }, {timestamps: false})
 
+
+        Movie.belongsTo(Category, {foreignKey: 'category_id', sourceKey: 'id'});
+        Category.hasMany(Movie, {foreignKey: 'category_id', targetId: 'id'})

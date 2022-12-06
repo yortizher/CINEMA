@@ -101,7 +101,7 @@ export const editResponse = async (req,res) => {
     const { id } = req.params
     try {
 
-        const { name, capacity,  desc_location } = req.body
+        const { name, capacity,  desc_location  } = req.body
 
         const convertValue = val => {
             let capacidad = val
@@ -128,18 +128,19 @@ export const editResponse = async (req,res) => {
             res.pop(res.length - 1)
             return res
             }
-    
+        
+
         const editRegister = await Room.findByPk(id)
 
         if ( capacity ) {
 
             editRegister.name = req.body?.name
-            editRegister.capacity = capacity
+            editRegister.capacity = req.body?.capacity
             editRegister.desc_location = req.body?.desc_location
             editRegister.seats_distribution = convertValue(capacity)
             await editRegister.save()
         
-            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
+                res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister  })
             
         } else if (name ) {
             editRegister.name = name
@@ -151,10 +152,10 @@ export const editResponse = async (req,res) => {
             editRegister.desc_location = desc_location
             await editRegister.save()
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
-        } else {
+        } else  {
             editRegister.name = name
             editRegister.desc_location = desc_location
-
+            await editRegister.save()
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
         }
        

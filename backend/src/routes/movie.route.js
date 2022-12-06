@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { 
     getResponses,
     responseById,
@@ -11,6 +12,6 @@ export const movieRouter = Router()
 
 movieRouter.get('/', getResponses)
 movieRouter.get('/:id', responseById)
-movieRouter.post('/', createResponse)
+movieRouter.post('/',   createResponse)
 movieRouter.delete('/:id', deleteResponse)
-movieRouter.put('/:id', editResponse)
+movieRouter.put('/:id',   editResponse)

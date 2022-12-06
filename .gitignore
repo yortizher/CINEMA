@@ -1,3 +1,4 @@
 node_modules/
 backend/.env
 backend/sqo.sql
+a.js
