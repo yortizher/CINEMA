@@ -132,8 +132,8 @@ const message1 = (text) => {
 
 </script>
 <template>
-  <div class="container container-main">
-    <div class="row d-flex justify-content-center mt-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center container-main">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         
         <div class="container-form py-3 px-2">

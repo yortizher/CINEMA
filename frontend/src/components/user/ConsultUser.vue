@@ -104,7 +104,7 @@ const message = (position, title, text, time) => {
 <style scoped>
 .container-main {
 	margin: 19rem auto;
-  width: 60%;
+  width: 90%;
 }
 .container-main {
 	margin-top: 5rem;
@@ -122,8 +122,8 @@ const message = (position, title, text, time) => {
 }
 .row-item {
   display: flex;
-  flex-direction: row;
-  width: 450px;  
+  flex-direction: column;
+  width: 300px;  
 }
 .container{
     margin-top:100px;
@@ -153,11 +153,21 @@ const message = (position, title, text, time) => {
 }
 
 .widget-content .widget-content-right {
-    margin-left: auto;
+    margin-left: 1px;
 }
 .btn-outline-success:hover {
     color: var(--white);
     background-color: #3ac47d;
     border-color: #3ac47d;
+}
+@media(min-width: 450px){
+  .row-item {
+  flex-direction: row;
+  width: 450px;  
+}
+
+.container-main {
+  width: 60%;
+}
 }
 </style>

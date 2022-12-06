@@ -97,7 +97,7 @@ const message = (position, title, text, time) => {
 <style scoped>
 .container-main {
 	margin: 9rem auto;
-  width: 60%;
+  width: 90%;
 }
 .card-header {
   background: var(--purple_navy);
@@ -140,5 +140,10 @@ const message = (position, title, text, time) => {
     color: var(--white);
     background-color: #3ac47d;
     border-color: #3ac47d;
+}
+@media(min-width: 450px){
+.container-main {
+  width: 60%;
+}
 }
 </style>

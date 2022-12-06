@@ -357,6 +357,7 @@ onMounted(() => {
 }
 .buttons {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 .bn {
