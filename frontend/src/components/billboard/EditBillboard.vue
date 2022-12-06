@@ -184,7 +184,7 @@ onMounted(() => {
     <div class="row d-flex justify-content-center mt-5">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="container-form py-3 px-2">
-          <h2 class="text-center mb-3 mt-2 h2 text-white">Actualizar cartelera </h2>
+          <h2 class="text-center mb-3 mt-2 h2 text-white">Editar cartelera </h2>
           <div class="division">
             <hr class="line" />
           </div>

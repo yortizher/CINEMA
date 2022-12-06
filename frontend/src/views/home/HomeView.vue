@@ -3,13 +3,11 @@ import Card from "../../components/home/Card.vue";
 import MenuVue from "../../components/navigation/Menu.vue";
 
 
-
 let URL = window.location;
 </script>
 <template>
+  <MenuVue />
 
-
-<MenuVue/>
 
 <!-- Esto va envolviendo las card de peliculas -->
     

@@ -318,9 +318,6 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
-
-
-
 .division {
   float: none;
   position: relative;
@@ -379,6 +376,14 @@ onMounted(() => {
   box-shadow: none;
   border: none;
 }
+@media(min-width: 450px){
+	.division .line{
+		width: 50%;
+	}
+	.buttons {
+    flex-direction: row;
+}
+}
 
 @media (min-width: 767px) {
   .bn {
@@ -391,10 +396,6 @@ onMounted(() => {
     align-items: center;
   }
 }
-@media (max-width: 450px) {
-  .division .line {
-    width: 50%;
-  }
-}
+
 
 </style>
