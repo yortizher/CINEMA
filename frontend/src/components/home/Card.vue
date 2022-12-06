@@ -34,7 +34,7 @@ const setMovieSelected = (movie) => movieSelected.value = {...movie}
             </div>
             <div class="card-content">
                 <h3 class="title text-secondary">{{movie.name}}</h3>
-                <div class="sub-title">Género:<span>{{movie.category.name}}</span></div>
+                <!-- <div class="sub-title">Género:<span>{{movie.category.name}}</span></div> -->
             </div>
             <DetailModal :movie="movieSelected"/> 
         </div>
