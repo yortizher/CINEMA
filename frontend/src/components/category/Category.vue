@@ -123,6 +123,13 @@ const clear = () => {
 	color: var(--purple_navy);
 	margin-top: 8%;
 }
+.img {
+    width: 50%;
+    height: 10rem;
+    object-fit: cover;
+    transition: all .3s ease-in-out;    
+    transform: scale(1);
+}
 
 .division{
 	float: none;
@@ -143,6 +150,7 @@ const clear = () => {
 .form-group {
   margin-bottom: 20px;
 }
+.form-select,
 .form-control{
 	border: 1px solid var(--purple_navy);
 	border-radius: 3px;
@@ -150,6 +158,7 @@ const clear = () => {
 	letter-spacing: 1px;
     color: var(--light_gray);
 }
+.form-select:focus,
 .form-control:focus{
 	border: 1px solid  var(--medium_purple);
 	border-radius: 3px;
